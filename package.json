@@ -1,9 +1,10 @@
 {
   "name": "universal-react-redux-boilerplate",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Step by step creation of a Universal React + Redux Boilerplate",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,11 @@
     "boilerplate"
   ],
   "author": "Dillon de Voor (http://crocodillon.com)",
-  "license": "CC0-1.0"
+  "license": "CC0-1.0",
+  "dependencies": {
+    "koa": "^1.1.2",
+    "koa-static": "^1.5.2",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  }
 }
