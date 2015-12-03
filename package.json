@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^1.1.2",
+    "koa-static": "^1.5.2",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  }
 }
