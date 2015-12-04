@@ -3,7 +3,7 @@
 This is a work-in-progress creation of a boilerplate which I’ll be using in my projects.
 
 - [x] React (ES5), served with a simple Koa server
-- [ ] React (ES6) with JSX, transpiled and bundled with webpack and babel
+- [x] React (ES6) with JSX, transpiled and bundled with webpack and babel
 - [ ] Development strategy using webpack’s development middleware
 - [ ] Hot Module Replacement (HMR) in development
 - [ ] Production strategy using hashes for cache invalidation
@@ -27,3 +27,9 @@ Very basic “Hello world” app in React. No transpiling needed, it just works.
 With this step I want you to understand there is no magic in React. You can use ES6 or JSX syntax, but in the end it’s just JavaScript.
 
 Start the server with `npm start`!
+
+### React (ES6) with JSX, transpiled and bundled with webpack and babel
+
+If you want to use ES6 and JSX you need a transpiler to make it work in the browser. I’m using webpack and babel. This build step transpiles (to ES5) and bundles your application files.
+
+Create the bundle with `npm run build`, start the server with `npm start`.
