@@ -5,7 +5,7 @@ This is a work-in-progress creation of a boilerplate which I’ll be using in my
 - [x] React (ES5), served with a simple Koa server
 - [x] React (ES6) with JSX, transpiled and bundled with webpack and babel
 - [x] Development strategy using webpack’s development middleware
-- [ ] Hot Module Replacement (HMR) in development
+- [x] Hot Module Replacement (HMR) in development
 - [ ] Production strategy using hashes for cache invalidation
 - [ ] Going universal with server-side rendering (SSR)
 - [ ] Handle application state with Redux
@@ -39,3 +39,7 @@ Create the bundle with `npm run build`, start the server with `npm start`.
 The build step takes way too long. We can reduce this drastically using `webpack-dev-middleware`, which watches for file changes to recompile the bundle. The bundle is served from memory and rebuilds are fast.
 
 Start the server with `npm run dev`, we no longer need the other scripts anymore... for now.
+
+### Hot Module Replacement (HMR) in development
+
+Using `webpack-hot-middleware` and `react-transform-hmr` we can further improve development workflow by pushing bundle updates to the browser without needing to refresh the page.
