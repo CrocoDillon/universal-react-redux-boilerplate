@@ -5,6 +5,8 @@ const serve = require('koa-static');
 
 const app = koa();
 
+require('./webpack.server')(app);
+
 app.use(serve('public'));
 app.use(serve('dist'));
 

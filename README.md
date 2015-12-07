@@ -4,7 +4,7 @@ This is a work-in-progress creation of a boilerplate which I’ll be using in my
 
 - [x] React (ES5), served with a simple Koa server
 - [x] React (ES6) with JSX, transpiled and bundled with webpack and babel
-- [ ] Development strategy using webpack’s development middleware
+- [x] Development strategy using webpack’s development middleware
 - [ ] Hot Module Replacement (HMR) in development
 - [ ] Production strategy using hashes for cache invalidation
 - [ ] Going universal with server-side rendering (SSR)
@@ -33,3 +33,9 @@ Start the server with `npm start`!
 If you want to use ES6 and JSX you need a transpiler to make it work in the browser. I’m using webpack and babel. This build step transpiles (to ES5) and bundles your application files.
 
 Create the bundle with `npm run build`, start the server with `npm start`.
+
+### Development strategy using webpack’s development middleware
+
+The build step takes way too long. We can reduce this drastically using `webpack-dev-middleware`, which watches for file changes to recompile the bundle. The bundle is served from memory and rebuilds are fast.
+
+Start the server with `npm run dev`, we no longer need the other scripts anymore... for now.
