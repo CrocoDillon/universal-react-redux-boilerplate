@@ -1,6 +1,7 @@
 'use strict';
 
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const path = require('path');
 
 const config = {
@@ -24,9 +25,18 @@ const config = {
         test: /\.jsx?$/,
         loader: 'babel',
         include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap']
       }
     ]
   },
+  postcss: [
+    autoprefixer({
+      browsers: ['last 2 versions']
+    })
+  ],
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
