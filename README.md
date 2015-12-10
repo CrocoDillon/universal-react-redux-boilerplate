@@ -6,6 +6,7 @@ This is a work-in-progress creation of a boilerplate which I’ll be using in my
 - [x] React (ES6) with JSX, transpiled and bundled with webpack and babel
 - [x] Development strategy using webpack’s development middleware
 - [x] Hot Module Replacement (HMR) in development
+- [x] Sass and Autoprefixer with CSS hot loading
 - [ ] Production strategy using hashes for cache invalidation
 - [ ] Going universal with server-side rendering (SSR)
 - [ ] Handle application state with Redux
@@ -43,3 +44,7 @@ Start the server with `npm run dev`, we no longer need the other scripts anymore
 ### Hot Module Replacement (HMR) in development
 
 Using `webpack-hot-middleware` and `react-transform-hmr` we can further improve development workflow by pushing bundle updates to the browser without needing to refresh the page.
+
+### Sass and Autoprefixer with CSS hot loading
+
+With webpack you can also bundle your CSS. The bare minimum to make this work are the css and style loaders but I also added Sass and Autoprefixer loaders.
