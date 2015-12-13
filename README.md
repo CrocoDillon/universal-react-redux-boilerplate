@@ -7,7 +7,7 @@ This is a work-in-progress creation of a boilerplate which I’ll be using in my
 - [x] Development strategy using webpack’s development middleware
 - [x] Hot Module Replacement (HMR) in development
 - [x] Sass and Autoprefixer with CSS hot loading
-- [ ] Production strategy using hashes for cache invalidation
+- [x] Production strategy using hashes for cache invalidation
 - [ ] Going universal with server-side rendering (SSR)
 - [ ] Handle application state with Redux
 - [ ] Linting and testing critical application code
@@ -48,3 +48,9 @@ Using `webpack-hot-middleware` and `react-transform-hmr` we can further improve 
 ### Sass and Autoprefixer with CSS hot loading
 
 With webpack you can also bundle your CSS. The bare minimum to make this work are the css and style loaders but I also added Sass and Autoprefixer loaders.
+
+### Production strategy using hashes for cache invalidation
+
+To be able to enable long term caching we need a way to bust cache when content changes, which is why appending a content hash to the file name is so handy. That also means we need an updated `index.html` that points to the hashed file names.
+
+I decided to keep the development and production config in `webpack.config.js` completely separate yet still in the same file. This way it’s easiest to see what exactly is going on.
