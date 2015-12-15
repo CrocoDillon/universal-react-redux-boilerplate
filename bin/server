@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+'use strict';
+
+require('babel-register')({
+  presets: ['react', 'es2015-node5'],
+  babelrc: false
+});
+require.extensions['.scss'] = () => {};
+require('../config');
+
+const server = require('../server');
+server.listen(3000);

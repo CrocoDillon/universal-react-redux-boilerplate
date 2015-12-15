@@ -8,7 +8,7 @@ This is a work-in-progress creation of a boilerplate which I’ll be using in my
 - [x] Hot Module Replacement (HMR) in development
 - [x] Sass and Autoprefixer with CSS hot loading
 - [x] Production strategy using hashes for cache invalidation
-- [ ] Going universal with server-side rendering (SSR)
+- [x] Going universal with server-side rendering (SSR)
 - [ ] Handle application state with Redux
 - [ ] Linting and testing critical application code
 - [ ] Routing with React Router
@@ -54,3 +54,11 @@ With webpack you can also bundle your CSS. The bare minimum to make this work ar
 To be able to enable long term caching we need a way to bust cache when content changes, which is why appending a content hash to the file name is so handy. That also means we need an updated `index.html` that points to the hashed file names.
 
 I decided to keep the development and production config in `webpack.config.js` completely separate yet still in the same file. This way it’s easiest to see what exactly is going on.
+
+### Going universal with server-side rendering (SSR)
+
+Call it isomorphic or call it universal, server-side rendering is the reason I love React. Allow me to quote [Jeremy Keith (@adactio)](https://adactio.com/journal/9963) on this.
+
+> Server-side rendering is not a fallback; client-side rendering is an enhancement.
+
+Server-side rendering in React is possible but definitely not easy as you can see by the amount of changes needed to make this work for a simple “Hello world” app.

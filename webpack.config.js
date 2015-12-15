@@ -103,22 +103,24 @@ if (__PROD__) {
       }),
       function () {
         this.plugin('done', (stats) => {
-          const app = {};
+          const manifest = {
+            js: [],
+            css: []
+          };
 
           stats.toJson().assetsByChunkName.app.forEach((asset) => {
             if (/\.js$/.test(asset)) {
-              app.js = asset;
+              manifest.js.push(asset);
             }
             if (/\.css$/.test(asset)) {
-              app.css = asset;
+              manifest.css.push(asset);
             }
           });
 
-          let html = fs.readFileSync(path.join(__dirname, 'public/index.html'), 'utf8');
-          html = html.replace('app.js', app.js);
-          html = html.replace('app.css', app.css);
-          html = html.replace(/<!--\s*(<link.*?>)\s*-->/, '$1');
-          fs.writeFileSync(path.join(__dirname, 'dist/index.html'), html);
+          fs.writeFileSync(
+            path.join(__dirname, 'dist/manifest.json'),
+            JSON.stringify(manifest, null, 2)
+          );
         });
       }
     ],
