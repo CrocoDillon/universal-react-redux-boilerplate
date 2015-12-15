@@ -1,19 +1,26 @@
 'use strict';
 
-require('./config');
-
 const koa = require('koa');
+const router = require('koa-router')();
 const serve = require('koa-static');
 
-const app = koa();
+const server = koa();
+const app = require('./src/server');
+
+router.get('/', function* (next) {
+  app.run((body) => {
+    this.body = body;
+  });
+});
+server.use(router.routes());
+server.use(router.allowedMethods());
 
 if (__DEV__) {
-  require('./webpack.server')(app);
-  app.use(serve('public'));
+  require('./webpack.server')(server);
 }
 
 if (__PROD__) {
-  app.use(serve('dist'));
+  server.use(serve('dist'));
 }
 
-app.listen(3000);
+module.exports = server;
