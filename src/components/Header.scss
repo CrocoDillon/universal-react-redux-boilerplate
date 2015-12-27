@@ -1,0 +1,39 @@
+.Header {
+  padding: 0.5em;
+  background: #444;
+  color: #fff;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  > a {
+    float: left;
+    font-weight: 700;
+    line-height: 2;
+    text-decoration: none;
+  }
+
+  > nav {
+    float: right;
+
+    li {
+      display: inline-block;
+      margin-left: 0.5em;
+    }
+
+    a {
+      padding: 0.5em;
+      font-weight: 700;
+      line-height: 1;
+
+      &:hover,
+      &:focus {
+        background: rgba(#000, 0.25);
+        text-decoration: none;
+      }
+    }
+  }
+}

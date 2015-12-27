@@ -9,9 +9,8 @@ This is a work-in-progress creation of a boilerplate which I’ll be using in my
 - [x] Sass and Autoprefixer with CSS hot loading
 - [x] Production strategy using hashes for cache invalidation
 - [x] Going universal with server-side rendering (SSR)
+- [x] Routing with React Router
 - [ ] Handle application state with Redux
-- [ ] Linting and testing critical application code
-- [ ] Routing with React Router
 - [ ] Asynchronous Redux with Promises
 - [ ] Authentication with JSON Web Tokens (JWT) and Redux
 
@@ -62,3 +61,9 @@ Call it isomorphic or call it universal, server-side rendering is the reason I l
 > Server-side rendering is not a fallback; client-side rendering is an enhancement.
 
 Server-side rendering in React is possible but definitely not easy as you can see by the amount of changes needed to make this work for a simple “Hello world” app.
+
+### Routing with React Router
+
+Routing is done by React Router, whether the app is rendered on the server or on the client. To make this possible I had to use a wildcard route for Koa Router and place this after Koa’s static middleware.
+
+Fetching from an imaginary API is mocked (for now) to be synchronous.

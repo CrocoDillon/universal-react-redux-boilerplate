@@ -7,14 +7,6 @@ const serve = require('koa-static');
 const server = koa();
 const app = require('./src/server');
 
-router.get('/', function* (next) {
-  app.run((body) => {
-    this.body = body;
-  });
-});
-server.use(router.routes());
-server.use(router.allowedMethods());
-
 if (__DEV__) {
   require('./webpack.server')(server);
 }
@@ -22,5 +14,23 @@ if (__DEV__) {
 if (__PROD__) {
   server.use(serve('dist'));
 }
+
+router.get('*', function* () {
+  yield app.run(this.path).then(({ response, redirect, status }) => {
+    if (status) {
+      this.status = status;
+    }
+
+    if (response) {
+      this.body = response;
+    } else if (redirect) {
+      this.redirect(redirect);
+    }
+  }).catch((status) => {
+    this.status = status;
+  });
+});
+server.use(router.routes());
+server.use(router.allowedMethods());
 
 module.exports = server;

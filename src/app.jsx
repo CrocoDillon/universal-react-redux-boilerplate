@@ -2,6 +2,14 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HelloWorld from './components/HelloWorld';
+import { Router } from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 
-ReactDOM.render(<HelloWorld />, document.getElementById('app'));
+import routes from './routes';
+
+const history = createBrowserHistory();
+
+ReactDOM.render(
+  <Router routes={routes} history={history} />,
+  document.getElementById('app')
+);

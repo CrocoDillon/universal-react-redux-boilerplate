@@ -11,13 +11,13 @@ class Template extends Component {
     return (
       <html>
         <head>
-          <title>Hello world</title>
+          <title>Universal React + Redux Boilerplate</title>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          {this.props.css.map((css) => (<link rel="stylesheet" href={css} />))}
+          {this.props.css.map((css, i) => (<link key={i} rel="stylesheet" href={css} />))}
         </head>
         <body>
           <div id="app" dangerouslySetInnerHTML={getAppMarkup()} />
-          {this.props.js.map((js) => (<script src={js}></script>))}
+          {this.props.js.map((js, i) => (<script key={i} src={js}></script>))}
         </body>
       </html>
     );

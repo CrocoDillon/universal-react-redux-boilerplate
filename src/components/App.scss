@@ -1,0 +1,37 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  background: #eee;
+  color: #444;
+  font: 400 100%/1.5 sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  padding: 0.5em;
+}
+
+h1 {
+  margin: 0 0 0.75em;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: 80em;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: #fff;
+}
