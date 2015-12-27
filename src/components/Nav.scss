@@ -1,0 +1,17 @@
+.Nav {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
