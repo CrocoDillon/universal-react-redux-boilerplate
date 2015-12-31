@@ -26,7 +26,7 @@ router.get('*', function* () {
     } else if (redirect) {
       this.redirect(redirect);
     }
-  }).catch((status) => {
+  }).catch((status = 500) => {
     this.status = status;
   });
 });

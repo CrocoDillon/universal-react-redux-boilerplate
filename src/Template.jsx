@@ -5,8 +5,12 @@ import React, { Component } from 'react';
 class Template extends Component {
   render() {
     const getAppMarkup = () => {
-          return {__html: this.props.markup};
-        };
+      return {__html: this.props.markup};
+    };
+    const getAppState = () => {
+      let json = JSON.stringify(this.props.state).replace('</', '<\\/');
+      return {__html: `window.__INITIAL_STATE__=${json}`};
+    };
 
     return (
       <html>
@@ -17,6 +21,7 @@ class Template extends Component {
         </head>
         <body>
           <div id="app" dangerouslySetInnerHTML={getAppMarkup()} />
+          <script dangerouslySetInnerHTML={getAppState()} />
           {this.props.js.map((js, i) => (<script key={i} src={js}></script>))}
         </body>
       </html>
