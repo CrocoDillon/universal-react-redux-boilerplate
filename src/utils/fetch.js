@@ -29,14 +29,28 @@ const articles = [
   }
 ];
 
+// Mimics server-side field filtering to limit the amount of data transfer
+const filterFields = (entity, fields) => {
+  if (fields) {
+    return fields.split(',').reduce((acc, field) => {
+      acc[field] = entity[field];
+      return acc;
+    }, {});
+  }
+
+  return entity;
+};
+
 const fetch = (url) => {
-  let match = /^\/api\/articles(?:\/?|\/(.*))$/.exec(url);
+  let match = /^\/api\/articles(?:\/?|\/(.*))(?:\?fields=(.*))?$/.exec(url);
   if (match) {
     let slug = match[1];
+    let fields = match[2];
+
     if (slug) {
-      return articles.find((article) => (article.slug === slug));
+      return filterFields(articles.find((article) => (article.slug === slug)), fields);
     } else {
-      return articles;
+      return articles.map((article) => (filterFields(article, fields)));
     }
   }
 };

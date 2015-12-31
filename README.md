@@ -10,7 +10,7 @@ This is a work-in-progress creation of a boilerplate which I’ll be using in my
 - [x] Production strategy using hashes for cache invalidation
 - [x] Going universal with server-side rendering (SSR)
 - [x] Routing with React Router
-- [ ] Handle application state with Redux
+- [x] Handle application state with Redux
 - [ ] Asynchronous Redux with Promises
 - [ ] Authentication with JSON Web Tokens (JWT) and Redux
 
@@ -67,3 +67,9 @@ Server-side rendering in React is possible but definitely not easy as you can se
 Routing is done by React Router, whether the app is rendered on the server or on the client. To make this possible I had to use a wildcard route for Koa Router and place this after Koa’s static middleware.
 
 Fetching from an imaginary API is mocked (for now) to be synchronous.
+
+### Handle application state with Redux
+
+Redux handles our application state. In this case that’s the articles and article related stuff. Note articles are stored flat and referenced by slug for the overview and article page. You can read about the advantages of this approach in [normalizr](https://github.com/gaearon/normalizr) (not implemented though). You might find yourself needing access to router state so I dropped in `redux-simple-router` as well to sync state between React Router and Redux.
+
+The constants, actions, reducers folder structure might seem overkill to you, see [ducks](https://github.com/erikras/ducks-modular-redux) for an alternative approach.

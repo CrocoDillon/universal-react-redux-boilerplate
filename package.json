@@ -30,7 +30,10 @@
     "koa-static": "^1.5.2",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-router": "^1.0.3"
+    "react-redux": "^4.0.6",
+    "react-router": "^1.0.3",
+    "redux": "^3.0.5",
+    "redux-simple-router": "^1.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.1.2",

@@ -1,14 +1,22 @@
 'use strict';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import fetch from '../utils/fetch';
+import { fetchArticle, showArticle } from '../actions/articles';
+
+const mapStateToProps = (state) => ({
+  article: state.articles.map[state.articles.current]
+});
 
 class BlogArticle extends Component {
+  static onEnter(dispatch, nextState) {
+    let slug = nextState.params.slug;
+    dispatch(fetchArticle(slug));
+    dispatch(showArticle(slug));
+  }
   render() {
-    let slug = this.props.params.slug;
-
-    let article = fetch('/api/articles/' + slug);
+    let { article } = this.props;
 
     return article ? (
       <article>
@@ -21,4 +29,4 @@ class BlogArticle extends Component {
   }
 }
 
-export default BlogArticle;
+export default connect(mapStateToProps)(BlogArticle);

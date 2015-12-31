@@ -107,13 +107,14 @@ if (__PROD__) {
             js: [],
             css: []
           };
+          const publicPath = '/';
 
           stats.toJson().assetsByChunkName.app.forEach((asset) => {
             if (/\.js$/.test(asset)) {
-              manifest.js.push(asset);
+              manifest.js.push(publicPath + asset);
             }
             if (/\.css$/.test(asset)) {
-              manifest.css.push(asset);
+              manifest.css.push(publicPath + asset);
             }
           });
 

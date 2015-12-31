@@ -3,15 +3,22 @@
 import './Blog.scss';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import { fetchArticles } from '../actions/articles';
 import { Nav } from '../components';
-import fetch from '../utils/fetch';
+
+const mapStateToProps = (state) => ({
+  articles: state.articles.overview.map((slug) => (state.articles.map[slug]))
+});
 
 class Blog extends Component {
+  static onEnter(dispatch) {
+    dispatch(fetchArticles());
+  }
   render() {
-    let { children } = this.props;
+    let { articles, children } = this.props;
 
-    let articles = fetch('/api/articles');
     let links = articles.map(({ slug, title }) => ({
       to: `/blog/${slug}`,
       text: title
@@ -31,4 +38,4 @@ class Blog extends Component {
   }
 }
 
-export default Blog;
+export default connect(mapStateToProps)(Blog);
