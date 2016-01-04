@@ -1,10 +1,12 @@
 'use strict';
 
-import { compose, createStore } from 'redux';
+import { compose, applyMiddleware, createStore } from 'redux';
+import { createMiddleware } from 'redux-promises';
 
 import reducer from './reducers';
 
 const composedStore = compose(
+  applyMiddleware(createMiddleware()),
   typeof window === 'object' && window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
 

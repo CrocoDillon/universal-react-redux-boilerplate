@@ -42,17 +42,27 @@ const filterFields = (entity, fields) => {
 };
 
 const fetch = (url) => {
-  let match = /^\/api\/articles(?:\/?|\/(.*))(?:\?fields=(.*))?$/.exec(url);
-  if (match) {
-    let slug = match[1];
-    let fields = match[2];
+  // Fake server response time of 50ms
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let match = /^\/api\/articles(?:\/?|\/(.*))(?:\?fields=(.*))?$/.exec(url);
+      if (match) {
+        let slug = match[1];
+        let fields = match[2];
 
-    if (slug) {
-      return filterFields(articles.find((article) => (article.slug === slug)), fields);
-    } else {
-      return articles.map((article) => (filterFields(article, fields)));
-    }
-  }
+        if (slug) {
+          let article = articles.find((article) => (article.slug === slug));
+          if (article) {
+            resolve(filterFields(article, fields));
+          } else {
+            reject(404);
+          }
+        } else {
+          resolve(articles.map((article) => (filterFields(article, fields))));
+        }
+      }
+    }, 50);
+  });
 };
 
 export default fetch;

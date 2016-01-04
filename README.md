@@ -11,7 +11,7 @@ This is a work-in-progress creation of a boilerplate which I’ll be using in my
 - [x] Going universal with server-side rendering (SSR)
 - [x] Routing with React Router
 - [x] Handle application state with Redux
-- [ ] Asynchronous Redux with Promises
+- [x] Asynchronous Redux with Promises
 - [ ] Authentication with JSON Web Tokens (JWT) and Redux
 
 Because I want the commits in the same order as this checklist, I will rebase and force push to master as long as this is a work-in-progress. You’re warned!
@@ -73,3 +73,10 @@ Fetching from an imaginary API is mocked (for now) to be synchronous.
 Redux handles our application state. In this case that’s the articles and article related stuff. Note articles are stored flat and referenced by slug for the overview and article page. You can read about the advantages of this approach in [normalizr](https://github.com/gaearon/normalizr) (not implemented though). You might find yourself needing access to router state so I dropped in `redux-simple-router` as well to sync state between React Router and Redux.
 
 The constants, actions, reducers folder structure might seem overkill to you, see [ducks](https://github.com/erikras/ducks-modular-redux) for an alternative approach.
+
+
+### Asynchronous Redux with Promises
+
+Asynchronous actions in Redux are not that hard using Redux middleware like `redux-thunk`. When rendering on the server you need to know when those actions are finished. For that purpose I developed [`redux-promises`](https://github.com/CrocoDillon/redux-promises), which builds upon `redux-thunk` to allow thunks returning promises. `redux-promises` keeps track of these promises and sets an `idle` flag in the store to either true or false.
+
+I tried to keep this commit as simple as possible, however a lot is going on. Currently missing are caching fetch results as optimization and dealing with fetch errors (for example 404) properly.
