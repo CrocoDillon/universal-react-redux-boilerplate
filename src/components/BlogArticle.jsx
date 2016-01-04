@@ -6,22 +6,23 @@ import { connect } from 'react-redux';
 import { fetchArticle, showArticle } from '../actions/articles';
 
 const mapStateToProps = (state) => ({
-  article: state.articles.map[state.articles.current]
+  articles: state.articles
 });
 
 class BlogArticle extends Component {
-  static onEnter(dispatch, nextState) {
+  static onEnter({ dispatch }, nextState) {
     let slug = nextState.params.slug;
     dispatch(fetchArticle(slug));
-    dispatch(showArticle(slug));
   }
   render() {
-    let { article } = this.props;
+    let { articles, params } = this.props;
+    let slug = params.slug;
+    let article = articles[slug];
 
     return article ? (
       <article>
         <h1>{article.title}</h1>
-        <div>{article.body}</div>
+        <div>{article.body || 'Loading...'}</div>
       </article>
     ) : (
       <h1>Not Found :(</h1>

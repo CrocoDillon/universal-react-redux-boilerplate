@@ -6,7 +6,7 @@ import { IndexRoute, Route } from 'react-router';
 import { App, Home, Blog, BlogIndex, BlogArticle, NotFound } from './components';
 
 const configureRoutes = (store) => {
-  const connect = (fn) => (nextState, replaceState) => fn(store.dispatch, nextState, replaceState);
+  const connect = (fn) => (nextState, replaceState) => fn(store, nextState, replaceState);
 
   return (
     <Route path="/" component={App}>

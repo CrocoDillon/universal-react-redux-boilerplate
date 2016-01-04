@@ -1,22 +1,32 @@
 'use strict';
 
-import { FETCH_ARTICLES, FETCH_ARTICLE, SHOW_ARTICLE } from '../constants/actions';
+import {
+  FETCH_ARTICLES,
+  FETCH_ARTICLES_SUCCESS,
+  FETCH_ARTICLES_FAILURE,
+  FETCH_ARTICLE,
+  FETCH_ARTICLE_SUCCESS,
+  FETCH_ARTICLE_FAILURE
+} from '../constants/actions';
 
 import fetch from '../utils/fetch';
 
-const fetchArticles = () => ({
-  type: FETCH_ARTICLES,
-  articles: fetch('/api/articles?fields=slug,title')
-});
+const fetchArticles = () => (dispatch, getState) => {
+  dispatch({ type: FETCH_ARTICLES });
 
-const fetchArticle = (slug) => ({
-  type: FETCH_ARTICLE,
-  article: fetch('/api/articles/' + slug)
-});
+  return fetch('/api/articles?fields=slug,title').then(
+    (result) => dispatch({ type: FETCH_ARTICLES_SUCCESS, articles: result }),
+    (error) => dispatch({ type: FETCH_ARTICLES_FAILURE })
+  );
+};
 
-const showArticle = (slug) => ({
-  type: SHOW_ARTICLE,
-  slug: slug
-});
+const fetchArticle = (slug) => (dispatch, getState) => {
+  dispatch({ type: FETCH_ARTICLE });
 
-export { fetchArticles, fetchArticle, showArticle };
+  return fetch('/api/articles/' + slug).then(
+    (result) => dispatch({ type: FETCH_ARTICLE_SUCCESS, article: result }),
+    (error) => dispatch({ type: FETCH_ARTICLE_FAILURE })
+  );
+};
+
+export { fetchArticles, fetchArticle };

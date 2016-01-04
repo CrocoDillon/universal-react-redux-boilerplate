@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { match, RoutingContext } from 'react-router';
 import { Provider } from 'react-redux';
+import { ensureIdleState } from 'redux-promises';
 
 import Template from './Template';
 import { configureStore } from './store';
@@ -26,16 +27,18 @@ export const run = (location) => {
 
         resolve({ redirect, status });
       } else if (renderProps) {
-        let markup = ReactDOMServer.renderToString(
-          <Provider store={store}>
-            <RoutingContext {...renderProps} />
-          </Provider>
-        );
-        let state = store.getState();
+        ensureIdleState(store).then(() => {
+          let markup = ReactDOMServer.renderToString(
+            <Provider store={store}>
+              <RoutingContext {...renderProps} />
+            </Provider>
+          );
+          let state = store.getState();
 
-        let response = '<!DOCTYPE html>' + ReactDOMServer.renderToStaticMarkup(<Template markup={markup} state={state} js={js} css={css} />);
-        let status = renderProps.routes.reduce((status, route) => (route.status || status), null);
-        resolve({ response, status });
+          let response = '<!DOCTYPE html>' + ReactDOMServer.renderToStaticMarkup(<Template markup={markup} state={state} js={js} css={css} />);
+          let status = renderProps.routes.reduce((status, route) => (route.status || status), null);
+          resolve({ response, status });
+        });
       } else {
         reject(404); // should never happen with the (wildcard) NotFound route
       }

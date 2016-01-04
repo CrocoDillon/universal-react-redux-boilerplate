@@ -9,20 +9,23 @@ import { fetchArticles } from '../actions/articles';
 import { Nav } from '../components';
 
 const mapStateToProps = (state) => ({
-  articles: state.articles.overview.map((slug) => (state.articles.map[slug]))
+  articles: state.articles
 });
 
 class Blog extends Component {
-  static onEnter(dispatch) {
+  static onEnter({ dispatch }) {
     dispatch(fetchArticles());
   }
   render() {
     let { articles, children } = this.props;
 
-    let links = articles.map(({ slug, title }) => ({
-      to: `/blog/${slug}`,
-      text: title
-    }));
+    let links = Object.keys(articles).map((key) => {
+      let { slug, title } = articles[key];
+      return {
+        to: `/blog/${slug}`,
+        text: title
+      };
+    });
 
     return (
       <div className="Blog">
