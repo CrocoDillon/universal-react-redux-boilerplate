@@ -28,8 +28,26 @@ if (__DEV__) {
       loaders: [
         {
           test: /\.jsx?$/,
+          include: path.join(__dirname, 'src'),
           loader: 'babel',
-          include: path.join(__dirname, 'src')
+          query: {
+            env: {
+              development: {
+                plugins: [
+                  ['react-transform', {
+                    transforms: [{
+                      transform: 'react-transform-hmr',
+                      imports: ['react'],
+                      locals: ['module']
+                    }, {
+                      transform: 'react-transform-catch-errors',
+                      imports: ['react', 'redbox-react']
+                    }]
+                  }]
+                ]
+              }
+            }
+          }
         },
         {
           test: /\.scss$/,
