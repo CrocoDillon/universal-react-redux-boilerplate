@@ -1,13 +1,13 @@
 {
   "name": "universal-react-redux-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Step by step creation of a Universal React + Redux Boilerplate",
   "main": "index.js",
   "scripts": {
-    "dev": "./bin/server",
-    "start": "NODE_ENV=production ./bin/server",
-    "build": "rm -rf dist && NODE_ENV=production ./node_modules/.bin/webpack --progress --colors",
-    "clean": "rm -rf dist",
+    "dev": "node ./bin/server",
+    "start": "cross-env NODE_ENV=production node ./bin/server",
+    "build": "rimraf dist && cross-env NODE_ENV=production ./node_modules/.bin/webpack --progress --colors",
+    "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -46,6 +46,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",
+    "cross-env": "^1.0.7",
     "css-loader": "^0.23.0",
     "extract-text-webpack-plugin": "^0.9.1",
     "node-sass": "^3.4.2",
@@ -53,6 +54,7 @@
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.2.0",
+    "rimraf": "^2.5.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
