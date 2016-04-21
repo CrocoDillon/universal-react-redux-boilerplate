@@ -43,6 +43,12 @@ npm run build
 npm start
 ```
 
+### Linting
+
+```bash
+npm run lint
+```
+
 ## Step by step
 
 Here is a summary of each step, where each step also represents one commit. Each step is like a milestone that brings us closer to the finished boilerplate. Feel free to modify to your needs!
@@ -56,3 +62,9 @@ Because the options passed to Babel need to be different for the server and the 
 To make use of a Webpack 2 feature called [_tree-shaking_](https://gist.github.com/sokra/27b24881210b56bbaff7), we have to use the Babel preset `es2015-webpack` so Babel doesn’t transform ES6 modules to CommonJS.
 
 Oh and do yourself a favor, make it a habit to always specify `displayName` and `propTypes` (if applicable) to React components.
+
+### Setting up ESLint
+
+Before starting your project it’s probably a good idea to set up some rules about code style. ESLint is awesome to enforce these rules because it’s pluggable and fully configurable. Linting is not about “best practices” and other people’s opinions, it’s about code style consistency, maintainability and preventing errors. The rules are up to you or your team, ESLint will do the rest.
+
+The `.eslintrc.js` file in this boilerplate is absolutely huge but don’t be intimidated by it. We could go the easy way and _extend_ `eslint:recommended` or for example `eslint-config-airbnb` but remember, it’s about your rules. I included every single standard ESLint rule and every single `eslint-plugin-react` rule whether they are enabled or not. That way all the rules are in one place which makes it easier to make them fit your needs.
