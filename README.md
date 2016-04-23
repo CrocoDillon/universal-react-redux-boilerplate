@@ -43,10 +43,11 @@ npm run build
 npm start
 ```
 
-### Linting
+### Linting en testing
 
 ```bash
 npm run lint
+npm run test
 ```
 
 ## Step by step
@@ -68,3 +69,9 @@ Oh and do yourself a favor, make it a habit to always specify `displayName` and 
 Before starting your project it’s probably a good idea to set up some rules about code style. ESLint is awesome to enforce these rules because it’s pluggable and fully configurable. Linting is not about “best practices” and other people’s opinions, it’s about code style consistency, maintainability and preventing errors. The rules are up to you or your team, ESLint will do the rest.
 
 The `.eslintrc.js` file in this boilerplate is absolutely huge but don’t be intimidated by it. We could go the easy way and _extend_ `eslint:recommended` or for example `eslint-config-airbnb` but remember, it’s about your rules. I included every single standard ESLint rule and every single `eslint-plugin-react` rule whether they are enabled or not. That way all the rules are in one place which makes it easier to make them fit your needs.
+
+### Setting up Mocha and Enzyme
+
+It’s also a good idea to start testing early. We use Mocha and Enzyme (which provides some nice testing utilities for React), along with Chai as assertion library. Even though we are not using it yet I also added Sinon to create spies, stubs and mocks and some Chai plugins to make assertions more expressive.
+
+Files containing tests are named `*.spec.js` and kept as close to the module they are testing as possible. If there are more than a few test files in one directory it can still be a good idea to put them in a subdirectory to keep things clean.
