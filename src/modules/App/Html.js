@@ -1,6 +1,7 @@
+// @flow
 import React, { PropTypes } from 'react'
 
-const Html = props => {
+const Html = (props: Object): React$Element => {
   const { markup } = props
 
   return (

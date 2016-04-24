@@ -15,7 +15,9 @@ module.exports = {
   },
   globals: {},
   plugins: [
-    'react'
+    'react',
+    'flowtype',
+    'flow-vars'
   ],
   rules: {
 
@@ -417,7 +419,7 @@ module.exports = {
     // require braces around arrow function bodies
     'arrow-body-style': [2, 'as-needed'],
     // require parentheses around arrow function arguments
-    'arrow-parens': [2, 'as-needed'],
+    'arrow-parens': 0,
     // enforce consistent spacing before and after the arrow in arrow functions
     'arrow-spacing': [2, { before: true, after: true }],
     // require super() calls in constructors
@@ -554,5 +556,27 @@ module.exports = {
     'react/jsx-uses-react': 2,
     // prevent variables used in JSX to be incorrectly marked as unused
     'react/jsx-uses-vars': 2,
+
+    // eslint-plugin-flowtype
+    // https://github.com/gajus/eslint-plugin-flowtype#configuration
+
+    // requires that all function parameters have type annotations
+    'flowtype/require-parameter-type': 0,
+    // requires that functions have return type annotation
+    'flowtype/require-return-type': 0,
+    // enforces consistent spacing before the type annotation colon
+    'flowtype/space-before-type-colon': [2, 'never'],
+    // enforces consistent spacing after the type annotation colon
+    'flowtype/space-after-type-colon': [2, 'always'],
+    // enforces a consistent naming pattern for type aliases
+    'flowtype/type-id-match': 0,
+
+    // eslint-plugin-flow-vars
+    // https://github.com/zertosh/eslint-plugin-flow-vars
+
+    // fixes no-undef for global flow types
+    'flow-vars/define-flow-type': 2,
+    // fixes no-unused-vars/no-undef with flow declarations
+    'flow-vars/use-flow-type': 2
   }
 }

@@ -1,5 +1,11 @@
 # Universal React + Redux Boilerplate
 
+[![NPM Version](https://img.shields.io/npm/v/universal-react-redux-boilerplate.svg?style=flat)](https://npmjs.org/package/universal-react-redux-boilerplate)
+[![Build Status](https://img.shields.io/travis/CrocoDillon/universal-react-redux-boilerplate.svg?style=flat)](https://travis-ci.org/CrocoDillon/universal-react-redux-boilerplate)
+[![Dependency Status](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate.svg)](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate)
+[![devDependency Status](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate/dev-status.svg)](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate#info=devDependencies)
+[![Package Quality](http://npm.packagequality.com/shield/universal-react-redux-boilerplate.svg)](http://packagequality.com/#?package=universal-react-redux-boilerplate)
+
 Boilerplate with all the good stuff but without the JavaScript fatigue. Made by [Dillon de Voor](https://twitter.com/CrocoDillon), follow me for updates and more!
 
 Includes Koa 2, React 15, Webpack 2 and React Hot Loader 3. See section [**“Feature rich”**](#feature-rich) for what other awesome features you can expect.
@@ -43,11 +49,20 @@ npm run build
 npm start
 ```
 
-### Linting en testing
+### Checking code quality
+
+Run ESLint, Mocha and Flow:
+
+```bash
+npm run check
+```
+
+Or separately:
 
 ```bash
 npm run lint
 npm run test
+npm run flow
 ```
 
 ## Step by step
@@ -75,3 +90,9 @@ The `.eslintrc.js` file in this boilerplate is absolutely huge but don’t be in
 It’s also a good idea to start testing early. We use Mocha and Enzyme (which provides some nice testing utilities for React), along with Chai as assertion library. Even though we are not using it yet I also added Sinon to create spies, stubs and mocks and some Chai plugins to make assertions more expressive.
 
 Files containing tests are named `*.spec.js` and kept as close to the module they are testing as possible. If there are more than a few test files in one directory it can still be a good idea to put them in a subdirectory to keep things clean.
+
+### Setting up Flow
+
+The last step in ensuring code quality is static type checking with Flow. This might require some annotations in your code which will be stripped out by a Babel plugin included in the React preset. Not everyone will be comfortable with that so let’s call this step optional.
+
+Now is a good time to add continuous integration which will run all our checks whenever we push to GitHub. And the badges... they are awesome!
