@@ -45,8 +45,7 @@ npm install
 ### Running the development server
 
 ```bash
-npm run build
-npm start
+npm run dev
 ```
 
 ### Checking code quality
@@ -96,3 +95,7 @@ Files containing tests are named `*.spec.js` and kept as close to the module the
 The last step in ensuring code quality is static type checking with Flow. This might require some annotations in your code which will be stripped out by a Babel plugin included in the React preset. Not everyone will be comfortable with that so let’s call this step optional.
 
 Now is a good time to add continuous integration which will run all our checks whenever we push to GitHub. And the badges... they are awesome!
+
+### Development strategy using Webpack middleware and React Hot Loader
+
+Restarting the server and rebuilding the bundle every time you make a code change is kinda boring, we need something better. Using Webpack’s dev middleware we can automatically update the bundle on code changes. The bundle is served from memory and rebuilds are much faster. And it gets even better, using Webpack’s hot middleware together with React Hot Loader we can apply the updates to a running React app, no need for a page refresh. It is _awesome_! Hot reloading on the server is done by plugging into the Webpack compiler and trashing the require cache when Webpack detects changes in the app source.

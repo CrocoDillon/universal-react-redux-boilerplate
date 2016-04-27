@@ -4,8 +4,7 @@
   "description": "Step by step creation of a Universal React + Redux Boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "node ./bin/server",
-    "build": "webpack --progress",
+    "dev": "node ./bin/server",
     "check": "npm run lint && npm run test && npm run flow",
     "lint": "eslint --cache .",
     "test": "NODE_ENV=test mocha mocha.config.js",
@@ -53,8 +52,11 @@
     "jsdom": "^8.4.0",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^15.0.1",
+    "react-hot-loader": "^3.0.0-beta.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "webpack": "^2.1.0-beta.5"
+    "webpack": "^2.1.0-beta.5",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
   }
 }
