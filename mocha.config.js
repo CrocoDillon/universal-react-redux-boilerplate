@@ -26,6 +26,16 @@ global.document  = document
 global.window    = document.defaultView
 global.navigator = { userAgent: 'node.js' }
 
+// Hook for CSS Module imports enables using classes in tests
+const hook = require('css-modules-require-hook')
+const sass = require('node-sass')
+
+hook({
+  extensions: ['.scss'],
+  generateScopedName: '[local]__[hash:base64:4]',
+  preprocessCss: (css, file) => sass.renderSync({ file }).css
+})
+
 // Load tests
 const glob = require('glob')
 glob.sync('./@(server|src)/**/*.spec.js').forEach(require)

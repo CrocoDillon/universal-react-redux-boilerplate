@@ -4,8 +4,11 @@
 <PROJECT_ROOT>/node_modules/.*
 
 [libs]
+interfaces
 
 [options]
+module.name_mapper='.+\.s?css' -> 'CSSModule'
+module.system=haste
 module.use_strict=true
 
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe

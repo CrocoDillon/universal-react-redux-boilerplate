@@ -10,6 +10,12 @@ describe('<Html />', () => {
   function setup(props = {}) {
     props = {
       markup: '',
+      assets: {
+        styles: {},
+        javascript: {},
+        assets: {},
+        ...props.assets
+      },
       ...props
     }
 
