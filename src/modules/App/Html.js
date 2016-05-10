@@ -27,7 +27,7 @@ const Html = (props: Object): React$Element => {
             <link key={ key } rel="stylesheet" href={ styles[key] } />
           ))
         }
-        <style>{ getStyles(assets) }</style>
+        { __DEV__ && <style>{ getStyles(assets) }</style> }
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={ { __html: markup } } />

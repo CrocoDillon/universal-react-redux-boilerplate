@@ -1,21 +1,30 @@
 #!/usr/bin/env node
 
 const path = require('path')
-const basePath = path.resolve(__dirname, '..')
 
-// Bootstrap babel-register
-require('../babel.server')
+// Globals
+const NODE_ENV = process.env.NODE_ENV || 'development'
+global.__DEV__ = NODE_ENV !== 'production'
+global.__PROD__ = NODE_ENV === 'production'
+global.__SERVER__ = true
+global.__CLIENT__ = false
 
-// Bootstrap webpack-isomorphic-tools
-require('../webpack.server')
+if (__DEV__) {
+  // Bootstrap babel-register
+  require('babel-register')
 
+  // Bootstrap webpack (required for webpack-isomorphic-tools)
+  require('../webpack.server')
+}
+
+const basePath = path.resolve(__dirname, __DEV__ ? '../src' : '../lib')
 const WebpackTools = require('webpack-isomorphic-tools')
 const webpackToolsConfig = require('../webpack.isomorphic.tools')
 
 global.webpackTools = new WebpackTools(webpackToolsConfig)
-  .development()
+  .development(__DEV__)
   .server(basePath, () => {
-    const server = require('../server')
+    const server = require(basePath)
 
     server.listen(3000, () => {
       console.info('Server is running!')

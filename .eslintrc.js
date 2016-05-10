@@ -13,7 +13,12 @@ module.exports = {
     node: true,
     es6: true
   },
-  globals: {},
+  globals: {
+    __DEV__: true,
+    __PROD__: true,
+    __SERVER__: true,
+    __CLIENT__: true
+  },
   plugins: [
     'react',
     'flowtype',

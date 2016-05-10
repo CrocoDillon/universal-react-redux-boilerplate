@@ -5,6 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./bin/server",
+    "start": "NODE_ENV=production node ./bin/server",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "NODE_ENV=production babel src --out-dir lib --copy-files",
+    "build:client": "NODE_ENV=production webpack --progress",
+    "clean": "rm -rf dist lib",
     "check": "npm run lint && npm run test && npm run flow",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint --cache .",
@@ -35,6 +40,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
+    "babel-cli": "^6.8.0",
     "babel-eslint": "^6.0.3",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.1.2",
@@ -53,6 +59,7 @@
     "eslint-plugin-flow-vars": "^0.3.0",
     "eslint-plugin-flowtype": "^2.2.7",
     "eslint-plugin-react": "^5.0.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "flow-bin": "^0.23.1",
     "glob": "^7.0.3",
     "jsdom": "^8.4.0",

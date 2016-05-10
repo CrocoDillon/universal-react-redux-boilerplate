@@ -1,10 +1,16 @@
 // Bootstrap babel-register
-require('./babel.server')
+require('babel-register')
 
 // Ensure correct NODE_ENV
 if (process.env.NODE_ENV !== 'test') {
   throw new Error('Running tests require NODE_ENV=test')
 }
+
+// Globals
+global.__DEV__ = true
+global.__PROD__ = false
+global.__SERVER__ = true
+global.__CLIENT__ = false
 
 // Set up chai and sinon
 const chai  = require('chai')
@@ -38,4 +44,4 @@ hook({
 
 // Load tests
 const glob = require('glob')
-glob.sync('./@(server|src)/**/*.spec.js').forEach(require)
+glob.sync('./src/**/*.spec.js').forEach(require)

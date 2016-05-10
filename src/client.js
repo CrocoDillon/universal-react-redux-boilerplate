@@ -1,20 +1,29 @@
+/* eslint global-require: 0 */
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
 
 import App from './modules/App'
 
-const render = () => {
+if (__DEV__) {
+  const { AppContainer } = require('react-hot-loader')
+
+  const render = () => {
+    ReactDOM.render(
+      <AppContainer>
+        <App />
+      </AppContainer>,
+      document.getElementById('app')
+    )
+  }
+  render()
+
+  // Hot reloading on the client
+  if (module.hot) {
+    module.hot.accept('./modules/App', render)
+  }
+} else {
   ReactDOM.render(
-    <AppContainer>
-      <App />
-    </AppContainer>,
+    <App />,
     document.getElementById('app')
   )
-}
-render()
-
-// Hot reloading on the client
-if (module.hot) {
-  module.hot.accept('./modules/App', render)
 }
