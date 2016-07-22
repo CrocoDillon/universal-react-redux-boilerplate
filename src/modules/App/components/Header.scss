@@ -1,0 +1,41 @@
+.Header {
+  background: #546e7a;
+
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.logo {
+  float: left;
+}
+
+.nav {
+  float: right;
+}
+
+.navList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navListItem {
+  display: inline-block;
+}
+
+.logo,
+.navLink {
+  display: block;
+  padding: 0.5em;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.active {
+  padding-bottom: 0.25em;
+  border-bottom: 0.25em solid #fff;
+}

@@ -258,7 +258,7 @@ module.exports = {
     // require return statements after callbacks
     'callback-return': 0,
     // require require() calls to be placed at top-level module scope
-    'global-require': 2,
+    'global-require': 0,
     // require error handling in callbacks
     'handle-callback-err': 0,
     // disallow require calls to be mixed with regular var declarations

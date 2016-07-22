@@ -3,12 +3,13 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import App from './App'
+import NotFound from './NotFound'
+import { rewind } from '../../helpers/status'
 
-describe('<App />', () => {
+describe('<NotFound />', () => {
 
   function setup() {
-    const wrapper = shallow(<App><children /></App>)
+    const wrapper = shallow(<NotFound />)
     const instance = wrapper.instance()
 
     return { wrapper, instance }
@@ -21,10 +22,12 @@ describe('<App />', () => {
     expect(instance).to.be.ok
   })
 
-  it('renders its children', () => {
-    const { wrapper } = setup()
-    const children = wrapper.find('children')
+  it('sets status to 404', () => {
+    rewind() // Ensure a fresh start
+    setup()
 
-    expect(children).to.have.length(1)
+    const status = rewind()
+
+    expect(status).to.be.equal(404)
   })
 })

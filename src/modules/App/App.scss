@@ -1,3 +1,28 @@
-.App {
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  color: #464646;
+  font: 400 100%/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* stylelint-disable-line value-keyword-case */
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  padding: 0.5em;
+}
+
+h1 {
   color: #546e7a;
+}
+
+.container {
+  max-width: 80em;
+  margin: 0 auto;
 }

@@ -1,4 +1,3 @@
-/* eslint global-require: 0 */
 import Koa from 'koa'
 
 const server = new Koa()
@@ -14,8 +13,15 @@ if (__DEV__) {
 server.use(async ctx => {
   // Dynamic require enables hot reloading on the server
   const { render } = require('./server')
-  const { body } = await render()
-  ctx.body = body
+  const { status, redirect, body } = await render(ctx.url)
+
+  ctx.status = status
+
+  if (redirect) {
+    ctx.redirect(redirect)
+  } else {
+    ctx.body = body
+  }
 })
 
 export default server

@@ -1,8 +1,8 @@
-/* eslint global-require: 0 */
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Router, browserHistory } from 'react-router'
 
-import App from './modules/App'
+import routes from './routes'
 
 if (__DEV__) {
   const { AppContainer } = require('react-hot-loader')
@@ -10,7 +10,7 @@ if (__DEV__) {
   const render = () => {
     ReactDOM.render(
       <AppContainer>
-        <App />
+        <Router routes={ routes } history={ browserHistory } />
       </AppContainer>,
       document.getElementById('app')
     )
@@ -19,11 +19,11 @@ if (__DEV__) {
 
   // Hot reloading on the client
   if (module.hot) {
-    module.hot.accept('./modules/App', render)
+    module.hot.accept('./routes', render)
   }
 } else {
   ReactDOM.render(
-    <App />,
+    <Router routes={ routes } history={ browserHistory } />,
     document.getElementById('app')
   )
 }

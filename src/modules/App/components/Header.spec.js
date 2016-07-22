@@ -3,12 +3,12 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import App from './App'
+import Header from './Header'
 
-describe('<App />', () => {
+describe('<Header />', () => {
 
   function setup() {
-    const wrapper = shallow(<App><children /></App>)
+    const wrapper = shallow(<Header />)
     const instance = wrapper.instance()
 
     return { wrapper, instance }
@@ -19,12 +19,5 @@ describe('<App />', () => {
 
     expect(wrapper).to.be.ok
     expect(instance).to.be.ok
-  })
-
-  it('renders its children', () => {
-    const { wrapper } = setup()
-    const children = wrapper.find('children')
-
-    expect(children).to.have.length(1)
   })
 })

@@ -1,15 +1,26 @@
 // @flow
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
-import styles from './App.scss'
+import Header from './components/Header'
 
 class App extends Component {
 
   static displayName = 'App';
 
-  render(): React$Element {
+  static propTypes = {
+    children: PropTypes.element.isRequired
+  };
+
+  render() {
+    const styles = require('./App.scss')
+
+    const { children } = this.props
+
     return (
-      <h1 className={ styles.App }>Universal React + Redux Boilerplate</h1>
+      <div className={ styles.container }>
+        <Header />
+        { children }
+      </div>
     )
   }
 }

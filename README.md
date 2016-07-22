@@ -125,3 +125,9 @@ Setting up `webpack-isomorphic-tools` is not trivial, but it’s worth it.
 ### Production strategy using hashes for cache invalidation
 
 In production we want to get rid of the overhead of transpiling by pre-building server and client code. We also want hashed assets to make use of far-future caching. These asserts can be deployed to a CDN, by changing the `publicPath` in `webpack.config.js` to point to the CDN the paths are updated automatically.
+
+### Routing with React Router
+
+While not your only choice, React Router definitely is the most popular choice when it comes to routing. It supports server-side routing and it supports browser History API on the client.
+
+What React Router doesn’t solve out of the box is handling of meta data like title or status. For title (and other `<head>` related meta data) there is React Helmet and for HTTP status when rendering on the server we use a small helper utility. Both are used React component’s render functions to support dynamically changing them, for example when a blog article is not found.

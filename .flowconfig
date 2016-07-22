@@ -1,7 +1,11 @@
 [include]
 
 [ignore]
-<PROJECT_ROOT>/node_modules/.*
+<PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/lib/.*
+
+.*/node_modules/editions/.*
+.*/node_modules/fbjs/.*
 
 [libs]
 interfaces
