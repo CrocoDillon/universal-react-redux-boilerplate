@@ -18,8 +18,8 @@ module.exports = {
     // Font Family
     // http://stylelint.io/user-guide/rules/#font-family
 
-    // specify whether or not quotation marks should be used around font family names, and whether single or double
-    'font-family-name-quotes': 'single-where-recommended',
+    // specify whether or not quotation marks should be used around font family names
+    'font-family-name-quotes': 'always-where-recommended',
 
     // Font Weight
     // http://stylelint.io/user-guide/rules/#font-weight
@@ -54,8 +54,10 @@ module.exports = {
     'function-parentheses-space-inside': 'never',
     // require or disallow data URIs for urls
     'function-url-data-uris': null,
-    // specify single, double or no quotes for urls
-    'function-url-quotes': 'single',
+    // disallow scheme-relative urls
+    'function-url-no-scheme-relative': true,
+    // require or disallow quotes for urls
+    'function-url-quotes': 'always',
     // specify a whitelist of allowed functions
     'function-whitelist': null,
     // require or disallow whitespace after functions
@@ -70,8 +72,6 @@ module.exports = {
     'number-max-precision': 4,
     // disallow trailing zeros in numbers
     'number-no-trailing-zeros': true,
-    // disallow units for zero lengths
-    'number-zero-length-no-unit': true,
 
     // String
     // http://stylelint.io/user-guide/rules/#string
@@ -81,10 +81,16 @@ module.exports = {
     // specify single or double quotes around strings
     'string-quotes': 'single',
 
+    // Length
+    // http://stylelint.io/user-guide/rules/#length
+
+    // disallow units for zero lengths
+    'length-zero-no-unit': true,
+
     // Time
     // http://stylelint.io/user-guide/rules/#time
 
-    // disallow animation and transition times under 100ms
+    // disallow animation and transition less than or equal to 100ms
     'time-no-imperceptible': true,
 
     // Unit
@@ -102,14 +108,14 @@ module.exports = {
     // Value
     // http://stylelint.io/user-guide/rules/#value
 
+    // specify lowercase or uppercase for keywords values
+    'value-keyword-case': 'lower',
     // disallow vendor prefixes for values
     'value-no-vendor-prefix': true,
 
     // Value List
     // http://stylelint.io/user-guide/rules/#value-list
 
-    // specify lowercase or uppercase for keywords values
-    'value-keyword-case': 'lower',
     // require a newline or disallow whitespace after the commas of value lists
     'value-list-comma-newline-after': 'always-multi-line',
     // require a newline or disallow whitespace before the commas of value lists
@@ -122,6 +128,8 @@ module.exports = {
     // Custom Property
     // http://stylelint.io/user-guide/rules/#custom-property
 
+    // require or disallow an empty line before custom properties
+    'custom-property-empty-line-before': 'always',
     // disallow custom properties outside of :root rules
     'custom-property-no-outside-root': null,
     // specify a pattern for custom properties
@@ -140,18 +148,18 @@ module.exports = {
     'property-blacklist': null,
     // specify lowercase or uppercase for properties
     'property-case': 'lower',
+    // disallow unknown properties
+    'property-no-unknown': true,
     // disallow vendor prefixes for properties
     'property-no-vendor-prefix': true,
-    // specify a blacklist of disallowed units for specific properties
-    'property-unit-blacklist': null,
-    // specify a whitelist of allowed units for specific properties
-    'property-unit-whitelist': null,
-    // specify a blacklist of disallowed values for specific properties
-    'property-value-blacklist': null,
-    // specify a whitelist of allowed values for specific properties
-    'property-value-whitelist': null,
     // specify a whitelist of allowed properties
     'property-whitelist': null,
+
+    // Keyframe declaration
+    // http://stylelint.io/user-guide/rules/#keyframe-declaration
+
+    // disallow !important within keyframe declarations
+    'keyframe-declaration-no-important': true,
 
     // Declaration
     // http://stylelint.io/user-guide/rules/#declaration
@@ -166,8 +174,18 @@ module.exports = {
     'declaration-colon-space-after': 'always-single-line',
     // require a single space or disallow whitespace before the colon of declarations
     'declaration-colon-space-before': 'never',
+    // require or disallow an empty line before declarations
+    'declaration-empty-line-before': null,
     // disallow !important within declarations
     'declaration-no-important': null,
+    // specify a blacklist of disallowed property and unit pairs within declarations
+    'declaration-property-unit-blacklist': {},
+    // specify a whitelist of allowed property and unit pairs within declarations
+    'declaration-property-unit-whitelist': {},
+    // specify a blacklist of disallowed property and value pairs within declarations
+    'declaration-property-value-blacklist': {},
+    // specify a whitelist of allowed property and value pairs within declarations
+    'declaration-property-value-whitelist': {},
 
     // Declaration Block
     // http://stylelint.io/user-guide/rules/#declaration-block
@@ -196,6 +214,8 @@ module.exports = {
     // Block
     // http://stylelint.io/user-guide/rules/#block
 
+    // require or disallow an empty line before the closing brace of blocks
+    'block-closing-brace-empty-line-before': 'never',
     // require a newline or disallow whitespace after the closing brace of blocks
     'block-closing-brace-newline-after': 'always',
     // require a newline or disallow whitespace before the closing brace of blocks
@@ -222,6 +242,16 @@ module.exports = {
 
     // require a single space or disallow whitespace on the inside of the brackets within attribute selectors
     'selector-attribute-brackets-space-inside': 'never',
+    // specify a blacklist of disallowed attribute operators
+    'selector-attribute-operator-blacklist': [],
+    // require a single space or disallow whitespace after operators within attribute selectors
+    'selector-attribute-operator-space-after': 'never',
+    // require a single space or disallow whitespace before operators within attribute selectors
+    'selector-attribute-operator-space-before': 'never',
+    // specify a whitelist of allowed attribute operators
+    'selector-attribute-operator-whitelist': null,
+    // require or disallow quotes for attribute values
+    'selector-attribute-quotes': 'always',
     // specify a pattern for class selectors
     'selector-class-pattern': null,
     // require a single space or disallow whitespace after the combinators of selectors
@@ -230,8 +260,12 @@ module.exports = {
     'selector-combinator-space-before': 'always',
     // specify a pattern for id selectors
     'selector-id-pattern': null,
+    // limit the number of compound selectors in a selector
+    'selector-max-compound-selectors': 3,
     // limit the specificity of selectors
     'selector-max-specificity': null,
+    // specify a pattern for the selectors of rules nested within rules
+    'selector-nested-pattern': null,
     // disallow attribute selectors
     'selector-no-attribute': null,
     // disallow combinators in selectors
@@ -246,18 +280,30 @@ module.exports = {
     'selector-no-universal': null,
     // disallow vendor prefixes for selectors
     'selector-no-vendor-prefix': true,
+    // specify a blacklist of disallowed pseudo-class selectors
+    'selector-pseudo-class-blacklist': [],
     // specify lowercase or uppercase for pseudo-class selectors
     'selector-pseudo-class-case': 'lower',
+    // disallow unknown pseudo-class selectors
+    'selector-pseudo-class-no-unknown': true,
     // require a single space or disallow whitespace on the inside of the parentheses within pseudo-class selectors
     'selector-pseudo-class-parentheses-space-inside': 'never',
+    // specify a whitelist of allowed pseudo-class selectors
+    'selector-pseudo-class-whitelist': null,
     // specify lowercase or uppercase for pseudo-element selectors
     'selector-pseudo-element-case': 'lower',
     // specify single or double colon notation for applicable pseudo-elements
     'selector-pseudo-element-colon-notation': 'double',
+    // disallow unknown pseudo-element selectors
+    'selector-pseudo-element-no-unknown': true,
     // disallow the composition of :root in selectors
     'selector-root-no-composition': true,
     // specify lowercase or uppercase for type selector
     'selector-type-case': 'lower',
+    // disallow unknown type selectors
+    'selector-type-no-unknown': true,
+    // limit the number of adjacent empty lines within selectors
+    'selector-max-empty-lines': 0,
 
     // Selector List
     // http://stylelint.io/user-guide/rules/#selector-list
@@ -292,10 +338,14 @@ module.exports = {
     'media-feature-colon-space-after': 'always',
     // require a single space or disallow whitespace before the colon in media features
     'media-feature-colon-space-before': 'never',
+    // specify lowercase or uppercase for media feature names
+    'media-feature-name-case': 'lower',
     // disallow vendor prefixes for media feature names
     'media-feature-name-no-vendor-prefix': true,
     // disallow missing punctuation for non-boolean media features
     'media-feature-no-missing-punctuation': true,
+    // require a single space or disallow whitespace on the inside of the parentheses within media features
+    'media-feature-parentheses-space-inside': 'never',
     // require a single space or disallow whitespace after the range operator in media features
     'media-feature-range-operator-space-after': 'always',
     // require a single space or disallow whitespace before the range operator in media features
@@ -306,12 +356,6 @@ module.exports = {
 
     // specify a pattern for custom media query names
     'custom-media-pattern': null,
-
-    // Media Query
-    // http://stylelint.io/user-guide/rules/#media-query
-
-    // require a single space or disallow whitespace on the inside of the parentheses within media queries
-    'media-query-parentheses-space-inside': 'never',
 
     // Media Query List
     // http://stylelint.io/user-guide/rules/#media-query-list
@@ -325,23 +369,41 @@ module.exports = {
     // require a single space or disallow whitespace before the commas of media query lists
     'media-query-list-comma-space-before': 'never',
 
-    // At Rule
+    // At-Rule
     // http://stylelint.io/user-guide/rules/#at-rule
 
+    // specify a blacklist of disallowed at-rules
+    'at-rule-blacklist': [],
     // require or disallow an empty line before at-rules
     'at-rule-empty-line-before': 'always',
     // specify lowercase or uppercase for at-rules names
     'at-rule-name-case': 'lower',
+    // require a newline after at-rule names
+    'at-rule-name-newline-after': 'always-multi-line',
+    // require a single space after at-rule names
+    'at-rule-name-space-after': 'always-single-line',
+    // disallow unknown at-rules
+    'at-rule-no-unknown': true,
     // disallow vendor prefixes for at-rules
     'at-rule-no-vendor-prefix': true,
     // require a newline after the semicolon of at-rules
     'at-rule-semicolon-newline-after': 'always',
+    // specify a whitelist of allowed at-rules
+    'at-rule-whitelist': null,
+
+    // stylelint-disable comment
+    // http://stylelint.io/user-guide/rules/#stylelint-disable-comment
+
+    // require a reason comment before or after stylelint-disable comments
+    'stylelint-disable-reason': null,
 
     // Comment
     // http://stylelint.io/user-guide/rules/#comment
 
     // require or disallow an empty line before comments
     'comment-empty-line-before': 'always',
+    // disallow empty comments
+    'comment-no-empty': true,
     // require or disallow whitespace on the inside of comment markers
     'comment-whitespace-inside': 'always',
     // specify a blacklist of disallowed words within comments
@@ -364,19 +426,21 @@ module.exports = {
     'no-descending-specificity': null,
     // disallow duplicate selectors
     'no-duplicate-selectors': true,
+    // disallow empty sources
+    'no-empty-source': true,
     // disallow end-of-line whitespace
     'no-eol-whitespace': true,
+    // disallow extra semicolons
+    'no-extra-semicolons': true,
     // disallow colors that are suspiciously close to being identical
     'no-indistinguishable-colors': null,
     // disallow double-slash comments (//...) which are not supported by CSS
     'no-invalid-double-slash-comments': null,
-    // disallow missing end-of-file newline
-    'no-missing-eof-newline': true,
+    // disallow missing end-of-source newlines
+    'no-missing-end-of-source-newline': true,
     // disallow animation names that do not correspond to a @keyframes declaration
     'no-unknown-animations': true,
     // disallow features that are unsupported by the browsers that you are targeting
-    'no-unsupported-browser-features': null,
-    // require a reason comment before or after stylelint-disable comments
-    'stylelint-disable-reason': null
+    'no-unsupported-browser-features': null
   }
 }
