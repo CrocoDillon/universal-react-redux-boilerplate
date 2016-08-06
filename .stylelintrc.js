@@ -19,7 +19,7 @@ module.exports = {
     // http://stylelint.io/user-guide/rules/#font-family
 
     // specify whether or not quotation marks should be used around font family names, and whether single or double
-    'font-family-name-quotes': 'single-where-recommended',
+    'font-family-name-quotes': 'always-where-recommended',
 
     // Font Weight
     // http://stylelint.io/user-guide/rules/#font-weight
@@ -55,7 +55,7 @@ module.exports = {
     // require or disallow data URIs for urls
     'function-url-data-uris': null,
     // specify single, double or no quotes for urls
-    'function-url-quotes': 'single',
+    'function-url-quotes': 'always',
     // specify a whitelist of allowed functions
     'function-whitelist': null,
     // require or disallow whitespace after functions
@@ -71,7 +71,7 @@ module.exports = {
     // disallow trailing zeros in numbers
     'number-no-trailing-zeros': true,
     // disallow units for zero lengths
-    'number-zero-length-no-unit': true,
+    'length-zero-no-unit': true,
 
     // String
     // http://stylelint.io/user-guide/rules/#string
@@ -143,13 +143,13 @@ module.exports = {
     // disallow vendor prefixes for properties
     'property-no-vendor-prefix': true,
     // specify a blacklist of disallowed units for specific properties
-    'property-unit-blacklist': null,
+    'declaration-property-unit-blacklist': {},
     // specify a whitelist of allowed units for specific properties
-    'property-unit-whitelist': null,
+    'declaration-property-unit-whitelist': {},
     // specify a blacklist of disallowed values for specific properties
-    'property-value-blacklist': null,
+    'declaration-property-value-blacklist': {},
     // specify a whitelist of allowed values for specific properties
-    'property-value-whitelist': null,
+    'declaration-property-value-whitelist': {},
     // specify a whitelist of allowed properties
     'property-whitelist': null,
 
@@ -311,7 +311,7 @@ module.exports = {
     // http://stylelint.io/user-guide/rules/#media-query
 
     // require a single space or disallow whitespace on the inside of the parentheses within media queries
-    'media-query-parentheses-space-inside': 'never',
+    'media-feature-parentheses-space-inside': 'never',
 
     // Media Query List
     // http://stylelint.io/user-guide/rules/#media-query-list
@@ -371,7 +371,7 @@ module.exports = {
     // disallow double-slash comments (//...) which are not supported by CSS
     'no-invalid-double-slash-comments': null,
     // disallow missing end-of-file newline
-    'no-missing-eof-newline': true,
+    'no-empty-source': true,
     // disallow animation names that do not correspond to a @keyframes declaration
     'no-unknown-animations': true,
     // disallow features that are unsupported by the browsers that you are targeting

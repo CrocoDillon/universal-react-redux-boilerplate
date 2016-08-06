@@ -1,3 +1,5 @@
+'use strict' // eslint-disable-line strict
+
 const path = require('path')
 const webpack = require('webpack')
 
@@ -41,7 +43,7 @@ if (__DEV__) {
           test: /\.js$/,
           loader: 'babel',
           query: {
-            presets: ['react', 'es2015-webpack', 'stage-0'],
+            presets: ['react', ['es2015', { modules: false }], 'stage-0'],
             plugins: ['react-hot-loader/babel']
           },
           include: path.join(__dirname, 'src')
@@ -98,17 +100,24 @@ if (__PROD__) {
           test: /\.js$/,
           loader: 'babel',
           query: {
-            presets: ['react', 'es2015-webpack', 'stage-0']
+            presets: ['react', ['es2015', { modules: false }], 'stage-0']
           },
           include: path.join(__dirname, 'src')
         },
         {
           test: /\.scss$/,
-          loader: ExtractTextPlugin.extract('style', [
-            'css?modules&localIdentName=[hash:base64:4]&importLoaders=1&sourceMap',
-            'postcss',
-            'sass?sourceMap'
-          ])
+          loader: ExtractTextPlugin.extract(
+            { fallbackLoader: 'style-loader',
+              loader: 'css?' +
+              'modules&' +
+              'localIdentName=[hash:base64:4]&' +
+              'importLoaders=1&' +
+              'sourceMap?' +
+              'postcss?' +
+              'sass?' +
+              'sourceMap'
+            }
+          )
         }
       ]
     },
