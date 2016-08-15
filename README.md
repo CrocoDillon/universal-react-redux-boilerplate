@@ -10,6 +10,8 @@ Boilerplate with all the good stuff but without the JavaScript fatigue. Made by 
 
 Includes Koa 2, React 15, Webpack 2 and React Hot Loader 3. See section [**“Feature rich”**](#feature-rich) for what other awesome features you can expect.
 
+_This is v2 of this boilerplate. See the [v1 branch](https://github.com/CrocoDillon/universal-react-redux-boilerplate/tree/v1) for the previous version._
+
 ## Why another boilerplate?
 
 Because this boilerplate is different than most boilerplates out there. Most boilerplates will just give you a rather complex starting point but not how they got to that starting point. Ever heard ot _JavaScript fatigue_? These boilerplates are not helping.
