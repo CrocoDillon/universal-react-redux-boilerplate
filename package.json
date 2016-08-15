@@ -32,12 +32,16 @@
   "author": "Dillon de Voor (http://crocodillon.com)",
   "license": "CC0-1.0",
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "koa": "^2.0.0-alpha.5",
     "koa-static": "^3.0.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-helmet": "^3.1.0",
+    "react-redux": "^4.4.5",
     "react-router": "^3.0.0-alpha.3",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
     "webpack-isomorphic-tools": "^2.5.7"
   },
   "devDependencies": {

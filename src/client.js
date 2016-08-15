@@ -1,8 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, browserHistory } from 'react-router'
+import { Provider } from 'react-redux'
 
-import routes from './routes'
+import configureStore from './store'
+import configureRoutes from './routes'
+
+const store = configureStore(window.__INITIAL_STATE__)
+const routes = configureRoutes(store)
 
 if (__DEV__) {
   const { AppContainer } = require('react-hot-loader')
@@ -10,7 +15,9 @@ if (__DEV__) {
   const render = () => {
     ReactDOM.render(
       <AppContainer>
-        <Router routes={ routes } history={ browserHistory } />
+        <Provider store={ store }>
+          <Router routes={ routes } history={ browserHistory } />
+        </Provider>
       </AppContainer>,
       document.getElementById('app')
     )
@@ -23,7 +30,9 @@ if (__DEV__) {
   }
 } else {
   ReactDOM.render(
-    <Router routes={ routes } history={ browserHistory } />,
+    <Provider store={ store }>
+      <Router routes={ routes } history={ browserHistory } />
+    </Provider>,
     document.getElementById('app')
   )
 }

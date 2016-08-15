@@ -131,3 +131,7 @@ In production we want to get rid of the overhead of transpiling by pre-building 
 While not your only choice, React Router definitely is the most popular choice when it comes to routing. It supports server-side routing and it supports browser History API on the client.
 
 What React Router doesn’t solve out of the box is handling of meta data like title or status. For title (and other `<head>` related meta data) there is React Helmet and for HTTP status when rendering on the server we use a small helper utility. Both are used React component’s render functions to support dynamically changing them, for example when a blog article is not found.
+
+### Managing application state with Redux
+
+Sooner or later you might need some more advanced state management than React gives you with component state. Redux is a good choice. Since we’re building a blog here it makes sense to keep loaded articles in this state. Redux features a store, reducers and actions, which are often grouped together. For this boilerplate I want to try a different approach and instead of grouping by nature we will group by domain. If you want to know more about this approach I encourage you to read [“Rules For Structuring (Redux) Applications”](http://jaysoo.ca/2016/02/28/organizing-redux-application/) and [“A Better File Structure For React/Redux Applications”](http://marmelab.com/blog/2015/12/17/react-directory-structure.html).

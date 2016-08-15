@@ -1,4 +1,4 @@
 export App, { Html } from './App'
 export Home from './Home'
-export Blog from './Blog'
+export Blog, { BlogIndex, BlogArticle } from './Blog'
 export NotFound from './NotFound'

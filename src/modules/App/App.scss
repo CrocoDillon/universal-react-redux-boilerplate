@@ -19,7 +19,14 @@ main {
 }
 
 h1 {
+  margin: 0 0 0.75em;
   color: #546e7a;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
 }
 
 .container {

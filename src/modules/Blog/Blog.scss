@@ -1,0 +1,13 @@
+.Blog {
+  display: flex;
+}
+
+.overview {
+  flex-shrink: 0;
+  width: 12em;
+  padding: 0.5em;
+}
+
+.article {
+  padding: 0.5em;
+}

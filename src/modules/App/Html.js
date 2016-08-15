@@ -13,8 +13,13 @@ const getStyles = assets =>
       return acc
     }, '')
 
+const getInitialState = state => {
+  const json = JSON.stringify(state).replace('</', '<\\/')
+  return `window.__INITIAL_STATE__=${ json }`
+}
+
 const Html = (props: Object) => {
-  const { markup, assets: { styles, javascript, assets }, helmet } = props
+  const { markup, state, assets: { styles, javascript, assets }, helmet } = props
 
   return (
     <html>
@@ -31,6 +36,7 @@ const Html = (props: Object) => {
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={ { __html: markup } } />
+        <script dangerouslySetInnerHTML={ { __html: getInitialState(state) } } />
         <script src={ javascript.app } />
       </body>
     </html>
@@ -41,6 +47,7 @@ Html.displayName = 'Html'
 
 Html.propTypes = {
   markup: PropTypes.string.isRequired,
+  state: PropTypes.object.isRequired,
   assets: PropTypes.shape({
     styles: PropTypes.objectOf(PropTypes.string).isRequired,
     javascript: PropTypes.objectOf(PropTypes.string).isRequired,

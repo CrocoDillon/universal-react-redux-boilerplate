@@ -12,10 +12,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // Globals
 const NODE_ENV = process.env.NODE_ENV || 'development'
-global.__DEV__ = NODE_ENV !== 'production'
-global.__PROD__ = NODE_ENV === 'production'
-global.__SERVER__ = true
-global.__CLIENT__ = false
+const __DEV__ = NODE_ENV !== 'production'
+const __PROD__ = NODE_ENV === 'production'
+const __SERVER__ = false
+const __CLIENT__ = true
 
 let config
 

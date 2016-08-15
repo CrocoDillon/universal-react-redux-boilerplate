@@ -10,6 +10,7 @@ describe('<Html />', () => {
   function setup(props = {}) {
     props = {
       markup: '',
+      state: {},
       assets: {
         styles: {},
         javascript: {},
@@ -46,5 +47,11 @@ describe('<Html />', () => {
     const wrapper = setup({ markup: '<div id="needle"></div>' })
 
     expect(wrapper.find('#app')).to.have.descendants('#needle')
+  })
+
+  it('does contain initial state', () => {
+    const wrapper = setup({ state: { foo: 'bar' } })
+
+    expect(wrapper.find('script')).to.have.text('window.__INITIAL_STATE__={"foo":"bar"}')
   })
 })
