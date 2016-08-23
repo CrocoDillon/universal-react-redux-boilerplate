@@ -1,5 +1,7 @@
 import Koa from 'koa'
 
+import api from './api'
+
 const server = new Koa()
 
 if (__DEV__) {
@@ -9,6 +11,8 @@ if (__DEV__) {
   const serve = require('koa-static')
   server.use(serve('dist'))
 }
+
+server.use(api)
 
 server.use(async ctx => {
   // Dynamic require enables hot reloading on the server
