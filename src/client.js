@@ -13,6 +13,8 @@ if (__DEV__) {
   const { AppContainer } = require('react-hot-loader')
 
   const render = () => {
+    const routes = require('./routes')(store) // eslint-disable-line no-shadow
+
     ReactDOM.render(
       <AppContainer>
         <Provider store={ store }>
