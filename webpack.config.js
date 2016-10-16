@@ -30,7 +30,7 @@ if (__DEV__) {
       ]
     },
     resolve: {
-      extensions: ['', '.js']
+      extensions: ['.js']
     },
     output: {
       path: path.join(__dirname, 'dist'),
@@ -38,7 +38,7 @@ if (__DEV__) {
       publicPath: '/'
     },
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.js$/,
           loader: 'babel',
@@ -59,12 +59,18 @@ if (__DEV__) {
         }
       ]
     },
-    postcss: [
-      autoprefixer({
-        browsers: ['last 2 versions']
-      })
-    ],
     plugins: [
+      new webpack.LoaderOptionsPlugin({
+        test: /\.css$/,
+        options: {
+          postcss: [
+            autoprefixer({
+              browsers: ['last 2 versions']
+            })
+          ],
+          context: __dirname
+        }
+      }),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
@@ -87,7 +93,7 @@ if (__PROD__) {
       app: './client.js'
     },
     resolve: {
-      extensions: ['', '.js']
+      extensions: ['.js']
     },
     output: {
       path: path.join(__dirname, 'dist'),
@@ -95,7 +101,7 @@ if (__PROD__) {
       publicPath: '/'
     },
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.js$/,
           loader: 'babel',
@@ -117,12 +123,18 @@ if (__PROD__) {
         }
       ]
     },
-    postcss: [
-      autoprefixer({
-        browsers: ['last 2 versions']
-      })
-    ],
     plugins: [
+      new webpack.LoaderOptionsPlugin({
+        test: /\.css$/,
+        options: {
+          postcss: [
+            autoprefixer({
+              browsers: ['last 2 versions']
+            })
+          ],
+          context: __dirname
+        }
+      }),
       new ExtractTextPlugin('app.[contenthash:20].css'),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({
