@@ -12,23 +12,18 @@ const routes = configureRoutes(store)
 if (__DEV__) {
   const { AppContainer } = require('react-hot-loader')
 
-  const render = () => {
-    const routes = require('./routes')(store) // eslint-disable-line no-shadow
-
-    ReactDOM.render(
-      <AppContainer>
-        <Provider store={ store }>
-          <Router routes={ routes } history={ browserHistory } />
-        </Provider>
-      </AppContainer>,
-      document.getElementById('app')
-    )
-  }
-  render()
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={ store }>
+        <Router routes={ routes } history={ browserHistory } />
+      </Provider>
+    </AppContainer>,
+    document.getElementById('app')
+  )
 
   // Hot reloading on the client
   if (module.hot) {
-    module.hot.accept('./routes', render)
+    module.hot.accept()
   }
 } else {
   ReactDOM.render(

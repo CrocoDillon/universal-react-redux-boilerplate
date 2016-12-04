@@ -1,9 +1,9 @@
 # Universal React + Redux Boilerplate
 
-[![NPM Version](https://img.shields.io/npm/v/universal-react-redux-boilerplate.svg?style=flat)](https://npmjs.org/package/universal-react-redux-boilerplate)
+[![NPM Version](https://img.shields.io/npm/v/universal-react-redux-boilerplate.svg)](https://npmjs.org/package/universal-react-redux-boilerplate)
 [![Build Status](https://img.shields.io/travis/CrocoDillon/universal-react-redux-boilerplate.svg?style=flat)](https://travis-ci.org/CrocoDillon/universal-react-redux-boilerplate)
-[![Dependency Status](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate.svg)](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate)
-[![devDependency Status](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate/dev-status.svg)](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate#info=devDependencies)
+[![dependencies Status](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate/status.svg)](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate)
+[![devDependencies Status](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate/dev-status.svg)](https://david-dm.org/CrocoDillon/universal-react-redux-boilerplate?type=dev)
 [![Package Quality](http://npm.packagequality.com/shield/universal-react-redux-boilerplate.svg)](http://packagequality.com/#?package=universal-react-redux-boilerplate)
 
 Boilerplate with all the good stuff but without the JavaScript fatigue. Made by [Dillon de Voor](https://twitter.com/CrocoDillon), follow me for updates and more!

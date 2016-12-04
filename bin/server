@@ -22,11 +22,10 @@ const WebpackTools = require('webpack-isomorphic-tools')
 const webpackToolsConfig = require('../webpack.isomorphic.tools')
 
 global.webpackTools = new WebpackTools(webpackToolsConfig)
-  .development(__DEV__)
   .server(basePath, () => {
     const server = require(basePath)
 
     server.listen(3000, () => {
-      console.info('Server is running!')
+      console.info('Server is running!') // eslint-disable-line no-console
     })
   })

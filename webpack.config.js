@@ -3,8 +3,6 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const autoprefixer = require('autoprefixer')
-
 const WebpackToolsPlugin = require('webpack-isomorphic-tools/plugin')
 const webpackToolsConfig = require('./webpack.isomorphic.tools')
 
@@ -41,7 +39,7 @@ if (__DEV__) {
       rules: [
         {
           test: /\.js$/,
-          loader: 'babel',
+          loader: 'babel-loader',
           query: {
             presets: ['react', ['es2015', { modules: false }], 'stage-0'],
             plugins: ['react-hot-loader/babel']
@@ -51,26 +49,15 @@ if (__DEV__) {
         {
           test: /\.scss$/,
           loaders: [
-            'style',
-            'css?modules&localIdentName=[local]__[hash:base64:4]&importLoaders=1&sourceMap',
-            'postcss',
-            'sass?sourceMap'
+            'style-loader',
+            'css-loader?modules&localIdentName=[local]__[hash:base64:4]&importLoaders=1&sourceMap',
+            'postcss-loader',
+            'sass-loader?sourceMap'
           ]
         }
       ]
     },
     plugins: [
-      new webpack.LoaderOptionsPlugin({
-        test: /\.css$/,
-        options: {
-          postcss: [
-            autoprefixer({
-              browsers: ['last 2 versions']
-            })
-          ],
-          context: __dirname
-        }
-      }),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
@@ -104,7 +91,7 @@ if (__PROD__) {
       rules: [
         {
           test: /\.js$/,
-          loader: 'babel',
+          loader: 'babel-loader',
           query: {
             presets: ['react', ['es2015', { modules: false }], 'stage-0']
           },
@@ -113,28 +100,17 @@ if (__PROD__) {
         {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style',
+            fallbackLoader: 'style-loader',
             loader: [
-              'css?modules&localIdentName=[hash:base64:4]&importLoaders=1&sourceMap',
-              'postcss',
-              'sass?sourceMap'
+              'css-loader?modules&localIdentName=[hash:base64:4]&importLoaders=1&sourceMap',
+              'postcss-loader',
+              'sass-loader?sourceMap'
             ]
           })
         }
       ]
     },
     plugins: [
-      new webpack.LoaderOptionsPlugin({
-        test: /\.css$/,
-        options: {
-          postcss: [
-            autoprefixer({
-              browsers: ['last 2 versions']
-            })
-          ],
-          context: __dirname
-        }
-      }),
       new ExtractTextPlugin('app.[contenthash:20].css'),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({

@@ -1,4 +1,3 @@
-// @flow
 import { compose, applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 
@@ -9,6 +8,17 @@ const composedStore = compose(
   __CLIENT__ && window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)
 
-const configureStore = (initialState: ?Object) => composedStore(reducer, initialState)
+const configureStore = (initialState: ?Object) => {
+  const store = composedStore(reducer, initialState)
+
+  if (module.hot) {
+    module.hot.accept('./reducer', () => {
+      const nextReducer = require('./reducer')
+      store.replaceReducer(nextReducer)
+    })
+  }
+
+  return store
+}
 
 export default configureStore
