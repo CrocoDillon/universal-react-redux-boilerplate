@@ -1,5 +1,6 @@
 // @flow
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { string, object, objectOf, shape } from 'prop-types'
 
 // `getStyles` is to prevent FOUC in development
 const getStyles = assets =>
@@ -46,14 +47,14 @@ const Html = (props: Object) => {
 Html.displayName = 'Html'
 
 Html.propTypes = {
-  markup: PropTypes.string.isRequired,
-  state: PropTypes.object.isRequired,
-  assets: PropTypes.shape({
-    styles: PropTypes.objectOf(PropTypes.string).isRequired,
-    javascript: PropTypes.objectOf(PropTypes.string).isRequired,
-    assets: PropTypes.object.isRequired
+  markup: string.isRequired,
+  state: object.isRequired,
+  assets: shape({
+    styles: objectOf(string).isRequired,
+    javascript: objectOf(string).isRequired,
+    assets: object.isRequired
   }).isRequired,
-  helmet: PropTypes.object
+  helmet: object
 }
 
 export default Html

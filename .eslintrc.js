@@ -28,6 +28,10 @@ module.exports = {
     // Possible Errors
     // http://eslint.org/docs/rules/#possible-errors
 
+    // disallow await inside of loops
+    'no-await-in-loop': 2,
+    // disallow comparing against -0
+    'no-compare-neg-zero': 2,
     // disallow assignment operators in conditional expressions
     'no-cond-assign': [2, 'except-parens'],
     // disallow the use of console
@@ -44,10 +48,10 @@ module.exports = {
     'no-dupe-keys': 2,
     // disallow duplicate case labels
     'no-duplicate-case': 2,
-    // disallow empty character classes in regular expressions
-    'no-empty-character-class': 2,
     // disallow empty block statements
     'no-empty': [2, { allowEmptyCatch: true }],
+    // disallow empty character classes in regular expressions
+    'no-empty-character-class': 2,
     // disallow reassigning exceptions in catch clauses
     'no-ex-assign': 2,
     // disallow unnecessary boolean casts
@@ -98,6 +102,8 @@ module.exports = {
     'array-callback-return': 0,
     // enforce the use of variables within the scope they are defined
     'block-scoped-var': 0,
+    // enforce that class methods utilize this
+    'class-methods-use-this': 0,
     // enforce a maximum cyclomatic complexity allowed in a program
     'complexity': 0,
     // require return statements to either always or never specify values
@@ -166,24 +172,28 @@ module.exports = {
     'no-multi-spaces': 0,
     // disallow multiline strings
     'no-multi-str': 0,
+    // disallow new operators outside of assignments or comparisons
+    'no-new': 2,
     // disallow new operators with the Function object
     'no-new-func': 2,
     // disallow new operators with the String, Number, and Boolean objects
     'no-new-wrappers': 2,
-    // disallow new operators outside of assignments or comparisons
-    'no-new': 2,
-    // disallow octal escape sequences in string literals
-    'no-octal-escape': 2,
     // disallow octal literals
     'no-octal': 2,
+    // disallow octal escape sequences in string literals
+    'no-octal-escape': 2,
     // disallow reassigning function parameters
     'no-param-reassign': 0,
     // disallow the use of the __proto__ property
     'no-proto': 2,
     // disallow var redeclaration
     'no-redeclare': 2,
+    // disallow certain properties on certain objects
+    'no-restricted-properties': 0,
     // disallow assignment operators in return statements
     'no-return-assign': [2, 'except-parens'],
+    // disallow unnecessary return await
+    'no-return-await': 0,
     // disallow javascript: urls
     'no-script-url': 2,
     // disallow assignments where both sides are exactly the same
@@ -206,14 +216,20 @@ module.exports = {
     'no-useless-concat': 2,
     // disallow unnecessary escape characters
     'no-useless-escape': 2,
+    // disallow redundant return statements
+    'no-useless-return': 2,
     // disallow void operators
     'no-void': 2,
     // disallow specified warning terms in comments
     'no-warning-comments': 0,
     // disallow with statements
     'no-with': 2,
+    // require using Error objects as Promise rejection reasons
+    'prefer-promise-reject-errors': 2,
     // enforce the consistent use of the radix argument when using parseInt()
     'radix': [2, 'always'],
+    // disallow async functions which have no await expression
+    'require-await': 0,
     // require var declarations be placed at the top of their containing scope
     'vars-on-top': 0,
     // require parentheses around immediate function invocations
@@ -240,14 +256,14 @@ module.exports = {
     'no-label-var': 2,
     // disallow specified global variables
     'no-restricted-globals': 2,
-    // disallow identifiers from shadowing restricted names
-    'no-shadow-restricted-names': 2,
     // disallow var declarations from shadowing variables in the outer scope
     'no-shadow': [2, { allow: ['resolve', 'reject'] }],
-    // disallow initializing variables to undefined
-    'no-undef-init': 2,
+    // disallow identifiers from shadowing restricted names
+    'no-shadow-restricted-names': 2,
     // disallow the use of undeclared variables unless mentioned in /*global */ comments
     'no-undef': 2,
+    // disallow initializing variables to undefined
+    'no-undef-init': 2,
     // disallow the use of undefined as an identifier
     'no-undefined': 2,
     // disallow unused variables
@@ -290,6 +306,8 @@ module.exports = {
     'brace-style': [2, '1tbs', { allowSingleLine: true }],
     // enforce camelcase naming convention
     'camelcase': 0,
+    // enforce or disallow capitalization of the first letter of a comment
+    'capitalized-comments': 0,
     // require or disallow trailing commas
     'comma-dangle': [2, 'never'],
     // enforce consistent spacing before and after commas
@@ -304,6 +322,8 @@ module.exports = {
     'eol-last': [2, 'unix'],
     // require or disallow spacing between function identifiers and their invocations
     'func-call-spacing': [2, 'never'],
+    // require function names to match the name of the variable or property to which they are assigned
+    'func-name-matching': 0,
     // require or disallow named function expressions
     'func-names': 0,
     // enforce the consistent use of either function declarations or expressions
@@ -322,10 +342,14 @@ module.exports = {
     'key-spacing': [2, { beforeColon: false, afterColon: true, mode: 'minimum' }],
     // enforce consistent spacing before and after keywords
     'keyword-spacing': [2, { before: true, after: true }],
+    // enforce position of line comments
+    'line-comment-position': 0,
     // enforce consistent linebreak style
     'linebreak-style': [2, 'unix'],
     // require empty lines around comments
     'lines-around-comment': 0,
+    // require or disallow newlines around directives
+    'lines-around-directive': 0,
     // enforce a maximum depth that blocks can be nested
     'max-depth': 0,
     // enforce a maximum line length
@@ -336,10 +360,10 @@ module.exports = {
     'max-nested-callbacks': 0,
     // enforce a maximum number of parameters in function definitions
     'max-params': 0,
-    // enforce a maximum number of statements allowed per line
-    'max-statements-per-line': 0,
     // enforce a maximum number of statements allowed in function blocks
     'max-statements': 0,
+    // enforce a maximum number of statements allowed per line
+    'max-statements-per-line': 0,
     // enforce newlines between operands of ternary expressions
     'multiline-ternary': 0,
     // require constructor function names to begin with a capital letter
@@ -390,16 +414,18 @@ module.exports = {
     'no-unneeded-ternary': 2,
     // disallow whitespace before properties
     'no-whitespace-before-property': 2,
+    // enforce the location of single-line statements
+    'nonblock-statement-body-position': 0,
     // enforce consistent line breaks inside braces
     'object-curly-newline': 0,
     // enforce consistent spacing inside braces
     'object-curly-spacing': [2, 'always'],
     // enforce placing object properties on separate lines
     'object-property-newline': 0,
-    // require or disallow newlines around var declarations
-    'one-var-declaration-per-line': 0,
     // enforce variables to be declared either together or separately in functions
     'one-var': 0,
+    // require or disallow newlines around var declarations
+    'one-var-declaration-per-line': 0,
     // require or disallow assignment operator shorthand where possible
     'operator-assignment': 0,
     // enforce consistent linebreak style for operators
@@ -412,10 +438,12 @@ module.exports = {
     'quotes': [2, 'single', { allowTemplateLiterals: true }],
     // require JSDoc comments
     'require-jsdoc': 0,
-    // enforce consistent spacing before and after semicolons
-    'semi-spacing': 2,
     // require or disallow semicolons instead of ASI
     'semi': [2, 'never'],
+    // enforce consistent spacing before and after semicolons
+    'semi-spacing': 2,
+    // require object keys to be sorted
+    'sort-keys': 0,
     // require variables within the same declaration block to be sorted
     'sort-vars': 0,
     // enforce consistent spacing before blocks
@@ -430,6 +458,8 @@ module.exports = {
     'space-unary-ops': [2, { words: true, nonwords: false }],
     // enforce consistent spacing after the // or /* in a comment
     'spaced-comment': [2, 'always'],
+    // require or disallow spacing between template tags and their literals
+    'template-tag-spacing': 0,
     // require or disallow the Unicode BOM
     'unicode-bom': [2, 'never'],
     // require parenthesis around regex literals
@@ -478,8 +508,10 @@ module.exports = {
     'prefer-arrow-callback': [2, { allowNamedFunctions: true }],
     // require const declarations for variables that are never reassigned after declared
     'prefer-const': [2, { destructuring: 'all' }],
-    // require Reflect methods where applicable
-    'prefer-reflect': 0,
+    // require destructuring from arrays and/or objects
+    'prefer-destructuring': 0,
+    // disallow parseInt() in favor of binary, octal, and hexadecimal literals
+    'prefer-numeric-literals': 0,
     // require rest parameters instead of arguments
     'prefer-rest-params': 2,
     // require spread operators instead of .apply()
@@ -492,6 +524,8 @@ module.exports = {
     'rest-spread-spacing': [2, 'never'],
     // enforce sorted import declarations within modules
     'sort-imports': 0,
+    // require symbol descriptions
+    'symbol-description': 0,
     // require or disallow spacing around embedded expressions of template strings
     'template-curly-spacing': [2, 'always'],
     // require or disallow spacing around the * in yield* expressions
@@ -504,8 +538,16 @@ module.exports = {
     'react/display-name': [2, { ignoreTranspilerName: true }],
     // forbid certain props on Components
     'react/forbid-component-props': 0,
+    // forbid certain elements
+    'react/forbid-elements': 0,
+    // forbid foreign propTypes
+    'react/forbid-foreign-prop-types': 0,
     // forbid certain propTypes
     'react/forbid-prop-types': 0,
+    // prevent using Array index in key props
+    'react/no-array-index-key': 2,
+    // prevent passing children as props
+    'react/no-children-prop': 2,
     // prevent usage of dangerous JSX properties
     'react/no-danger': 0,
     // prevent problem with children and props.dangerouslySetInnerHTML
@@ -530,8 +572,14 @@ module.exports = {
     'react/no-set-state': 0,
     // prevent using string references in ref attribute
     'react/no-string-refs': 2,
+    // prevent invalid characters from appearing in markup
+    'react/no-unescaped-entities': 0,
     // prevent usage of unknown DOM property
     'react/no-unknown-property': 2,
+    // prevent definitions of unused prop types
+    'react/no-unused-prop-types': 0,
+    // prevent usage of setState in componentWillUpdate
+    'react/no-will-update-set-state': 2,
     // enforce ES5 or ES6 class for React Components
     'react/prefer-es6-class': 2,
     // enforce stateless React Components to be written as a pure function
@@ -540,8 +588,8 @@ module.exports = {
     'react/prop-types': 2,
     // prevent missing React when using JSX
     'react/react-in-jsx-scope': 2,
-    // restrict file extensions that may be required
-    'react/require-extension': 0,
+    // enforce a defaultProps definition for every prop that is not a required prop
+    'react/require-default-props': 0,
     // enforce React components to have a shouldComponentUpdate method
     'react/require-optimization': 0,
     // enforce ES5 or ES6 class for returning value in render function
@@ -552,6 +600,10 @@ module.exports = {
     'react/sort-comp': 2,
     // enforce propTypes declarations alphabetical sorting
     'react/sort-prop-types': 0,
+    // enforce style prop value being an object
+    'react/style-prop-object': 0,
+    // prevent void DOM elements (e.g. <img />, <br />) from receiving children
+    'react/void-dom-elements-no-children': 2,
 
     // ESLint-plugin-React JSX
     // https://github.com/yannickcr/eslint-plugin-react#jsx-specific-rules
@@ -594,8 +646,12 @@ module.exports = {
     'react/jsx-pascal-case': 2,
     // enforce props alphabetical sorting
     'react/jsx-sort-props': 0,
-    // validate spacing before closing bracket in JSX
-    'react/jsx-space-before-closing': 2,
+    // validate whitespace in and around the JSX opening and closing brackets
+    'react/jsx-tag-spacing': [2, {
+      closingSlash: 'never',
+      beforeSelfClosing: 'always',
+      afterOpening: 'never'
+    }],
     // prevent React to be incorrectly marked as unused
     'react/jsx-uses-react': 2,
     // prevent variables used in JSX to be incorrectly marked as unused
@@ -606,20 +662,46 @@ module.exports = {
     // eslint-plugin-flowtype
     // https://github.com/gajus/eslint-plugin-flowtype#configuration
 
+    // enforces a particular style for boolean type annotations
+    'flowtype/boolean-style': [2, 'boolean'],
     // marks Flow type identifiers as defined
     'flowtype/define-flow-type': 2,
+    // enforces consistent use of trailing commas in Object and Tuple annotations
+    'flowtype/delimiter-dangle': 0,
+    // enforces consistent spacing within generic type annotation parameters
+    'flowtype/generic-spacing': 0,
+    // checks for duplicate properties in Object annotations
+    'flowtype/no-dupe-keys': 2,
+    // disallows use of primitive constructors as types, such as Boolean, Number and String
+    'flowtype/no-primitive-constructor-types': 2,
+    // disallows Flow type imports, aliases, and annotations in files missing a valid Flow file declaration
+    'flowtype/no-types-missing-file-annotation': 2,
+    // warns against weak type annotations any, Object and Function
+    'flowtype/no-weak-types': 0,
+    // enforces consistent separators between properties in Flow object types
+    'flowtype/object-type-delimiter': 0,
     // requires that all function parameters have type annotations
     'flowtype/require-parameter-type': 0,
     // requires that functions have return type annotation
     'flowtype/require-return-type': 0,
     // makes sure that files have a valid @flow annotation
     'flowtype/require-valid-file-annotation': 2,
+    // requires that all variable declarators have type annotations
+    'flowtype/require-variable-type': 0,
+    // enforces consistent use of semicolons after type aliases
+    'flowtype/semi': [2, 'never'],
+    // enforces sorting of Object annotations
+    'flowtype/sort-keys': 0,
     // enforces consistent spacing after the type annotation colon
     'flowtype/space-after-type-colon': [2, 'always'],
+    // enforces consistent spacing before the opening < of generic type annotation parameters
+    'flowtype/space-before-generic-bracket': 0,
     // enforces consistent spacing before the type annotation colon
     'flowtype/space-before-type-colon': [2, 'never'],
     // enforces a consistent naming pattern for type aliases
     'flowtype/type-id-match': 0,
+    // enforces consistent spacing around union and intersection type separators (| and &)
+    'flowtype/union-intersection-spacing': 0,
     // marks Flow type alias declarations as used
     'flowtype/use-flow-type': 2,
     // checks for simple Flow syntax errors

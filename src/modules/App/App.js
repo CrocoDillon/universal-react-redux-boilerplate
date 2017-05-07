@@ -1,5 +1,6 @@
 // @flow
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import { element } from 'prop-types'
 
 import Header from './components/Header'
 
@@ -8,7 +9,7 @@ class App extends Component {
   static displayName = 'App';
 
   static propTypes = {
-    children: PropTypes.element.isRequired
+    children: element.isRequired
   };
 
   render() {

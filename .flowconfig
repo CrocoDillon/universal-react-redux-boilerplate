@@ -4,8 +4,7 @@
 <PROJECT_ROOT>/dist/.*
 <PROJECT_ROOT>/lib/.*
 
-.*/node_modules/editions/.*
-.*/node_modules/fbjs/.*
+.*/node_modules/stylelint/.*
 
 [libs]
 interfaces

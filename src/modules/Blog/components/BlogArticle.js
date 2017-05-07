@@ -1,5 +1,6 @@
 // @flow
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { string, shape, bool } from 'prop-types'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 
@@ -41,11 +42,11 @@ export const BlogArticle = (props: Object) => {
 BlogArticle.displayName = 'BlogArticle'
 
 BlogArticle.propTypes = {
-  article: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired
+  article: shape({
+    title: string.isRequired,
+    body: string.isRequired
   }),
-  loading: PropTypes.bool.isRequired
+  loading: bool.isRequired
 }
 
 BlogArticle.onEnter = ({ dispatch }, { params }) => dispatch(fetchArticle(params.slug))

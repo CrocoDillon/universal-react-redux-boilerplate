@@ -20,6 +20,8 @@ module.exports = {
 
     // specify whether or not quotation marks should be used around font family names
     'font-family-name-quotes': 'always-where-recommended',
+    // disallow duplicate font family names
+    'font-family-no-duplicate-names': true,
 
     // Font Weight
     // http://stylelint.io/user-guide/rules/#font-weight
@@ -58,6 +60,8 @@ module.exports = {
     'function-url-no-scheme-relative': true,
     // require or disallow quotes for urls
     'function-url-quotes': 'always',
+    // specify a whitelist of allowed url schemes
+    'function-url-scheme-whitelist': null,
     // specify a whitelist of allowed functions
     'function-whitelist': null,
     // require or disallow whitespace after functions
@@ -90,8 +94,8 @@ module.exports = {
     // Time
     // http://stylelint.io/user-guide/rules/#time
 
-    // disallow animation and transition less than or equal to 100ms
-    'time-no-imperceptible': true,
+    // specify the minimum number of milliseconds for time values
+    'time-min-milliseconds': 100,
 
     // Unit
     // http://stylelint.io/user-guide/rules/#unit
@@ -124,6 +128,8 @@ module.exports = {
     'value-list-comma-space-after': 'always-single-line',
     // require a single space or disallow whitespace before the commas of value lists
     'value-list-comma-space-before': 'never',
+    // limit the number of adjacent empty lines within value lists
+    'value-list-max-empty-lines': 0,
 
     // Custom Property
     // http://stylelint.io/user-guide/rules/#custom-property
@@ -192,8 +198,8 @@ module.exports = {
 
     // disallow duplicate properties within declaration blocks
     'declaration-block-no-duplicate-properties': true,
-    // disallow property values that are ignored due to another property value in the same rule
-    'declaration-block-no-ignored-properties': true,
+    // disallow longhand properties that can be combined into one shorthand property
+    'declaration-block-no-redundant-longhand-properties': true,
     // disallow shorthand properties that override related longhand properties within declaration blocks
     'declaration-block-no-shorthand-property-overrides': true,
     // specify the order of properties within declaration blocks
@@ -226,8 +232,6 @@ module.exports = {
     'block-closing-brace-space-before': 'always-single-line',
     // disallow empty blocks
     'block-no-empty': true,
-    // disallow single-line blocks
-    'block-no-single-line': true,
     // require a newline after the opening brace of blocks
     'block-opening-brace-newline-after': 'always',
     // require a newline or disallow whitespace before the opening brace of blocks
@@ -258,6 +262,8 @@ module.exports = {
     'selector-combinator-space-after': 'always',
     // require a single space or disallow whitespace before the combinators of selectors
     'selector-combinator-space-before': 'always',
+    // disallow non-space characters for descendant combinators of selectors
+    'selector-descendant-combinator-no-non-space': true,
     // specify a pattern for id selectors
     'selector-id-pattern': null,
     // limit the number of compound selectors in a selector
@@ -296,8 +302,6 @@ module.exports = {
     'selector-pseudo-element-colon-notation': 'double',
     // disallow unknown pseudo-element selectors
     'selector-pseudo-element-no-unknown': true,
-    // disallow the composition of :root in selectors
-    'selector-root-no-composition': true,
     // specify lowercase or uppercase for type selector
     'selector-type-case': 'lower',
     // disallow unknown type selectors
@@ -317,19 +321,11 @@ module.exports = {
     // require a single space or disallow whitespace before the commas of selector lists
     'selector-list-comma-space-before': 'never',
 
-    // Root Rule
-    // http://stylelint.io/user-guide/rules/#root-rule
-
-    // disallow standard properties inside :root rules
-    'root-no-standard-properties': true,
-
     // Rule
     // http://stylelint.io/user-guide/rules/#rule
 
-    // require or disallow an empty line before nested rules
-    'rule-nested-empty-line-before': 'always',
-    // require or disallow an empty line before non-nested rules
-    'rule-non-nested-empty-line-before': 'always',
+    // require or disallow an empty line before rules
+    'rule-empty-line-before': null,
 
     // Media Feature
     // http://stylelint.io/user-guide/rules/#media-feature
@@ -338,12 +334,16 @@ module.exports = {
     'media-feature-colon-space-after': 'always',
     // require a single space or disallow whitespace before the colon in media features
     'media-feature-colon-space-before': 'never',
+    // specify a blacklist of disallowed media feature names
+    'media-feature-name-blacklist': null,
     // specify lowercase or uppercase for media feature names
     'media-feature-name-case': 'lower',
+    // disallow unknown media feature names
+    'media-feature-name-no-unknown': null,
     // disallow vendor prefixes for media feature names
     'media-feature-name-no-vendor-prefix': true,
-    // disallow missing punctuation for non-boolean media features
-    'media-feature-no-missing-punctuation': true,
+    // specify a whitelist of allowed media feature names
+    'media-feature-name-whitelist': null,
     // require a single space or disallow whitespace on the inside of the parentheses within media features
     'media-feature-parentheses-space-inside': 'never',
     // require a single space or disallow whitespace after the range operator in media features
@@ -388,14 +388,10 @@ module.exports = {
     'at-rule-no-vendor-prefix': true,
     // require a newline after the semicolon of at-rules
     'at-rule-semicolon-newline-after': 'always',
+    // require a single space or disallow whitespace before the semicolons of at rules
+    'at-rule-semicolon-space-before': 'never',
     // specify a whitelist of allowed at-rules
     'at-rule-whitelist': null,
-
-    // stylelint-disable comment
-    // http://stylelint.io/user-guide/rules/#stylelint-disable-comment
-
-    // require a reason comment before or after stylelint-disable comments
-    'stylelint-disable-reason': null,
 
     // Comment
     // http://stylelint.io/user-guide/rules/#comment
@@ -420,8 +416,6 @@ module.exports = {
     'max-line-length': null,
     // limit the depth of nesting
     'max-nesting-depth': 2,
-    // disallow browser hacks that are irrelevant to the browsers you are targeting
-    'no-browser-hacks': true,
     // disallow selectors of lower specificity from coming after overriding selectors of higher specificity
     'no-descending-specificity': null,
     // disallow duplicate selectors

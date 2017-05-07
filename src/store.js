@@ -8,7 +8,7 @@ const composedStore = compose(
   __CLIENT__ && window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)
 
-const configureStore = (initialState: ?Object) => {
+const configureStore = (initialState) => {
   const store = composedStore(reducer, initialState)
 
   if (module.hot) {

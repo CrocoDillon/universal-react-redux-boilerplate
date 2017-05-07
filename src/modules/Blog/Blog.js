@@ -1,5 +1,6 @@
 // @flow
-import React, { PropTypes } from 'react'
+import React from 'react'
+import { string, shape, element, arrayOf } from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
@@ -33,11 +34,11 @@ export const Blog = (props: Object) => {
 Blog.displayName = 'Blog'
 
 Blog.propTypes = {
-  children: PropTypes.element.isRequired,
-  articles: PropTypes.arrayOf(
-    PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
+  children: element.isRequired,
+  articles: arrayOf(
+    shape({
+      slug: string.isRequired,
+      title: string.isRequired
     })
   ).isRequired
 }

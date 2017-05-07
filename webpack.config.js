@@ -60,7 +60,7 @@ if (__DEV__) {
     plugins: [
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
       new webpack.DefinePlugin({
         __DEV__,
         __PROD__,
@@ -100,8 +100,8 @@ if (__PROD__) {
         {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style-loader',
-            loader: [
+            fallback: 'style-loader',
+            use: [
               'css-loader?modules&localIdentName=[hash:base64:4]&importLoaders=1&sourceMap',
               'postcss-loader',
               'sass-loader?sourceMap'

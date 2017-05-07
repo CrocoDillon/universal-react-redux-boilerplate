@@ -26,7 +26,7 @@ global.sinon  = sinon
 // Set up jsdom
 const jsdom = require('jsdom')
 
-const document = jsdom.jsdom()
+const document = new jsdom.JSDOM()
 
 global.document  = document
 global.window    = document.defaultView
