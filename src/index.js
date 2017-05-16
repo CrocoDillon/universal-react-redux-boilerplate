@@ -3,6 +3,8 @@ import Koa from 'koa'
 import api from './api'
 
 const server = new Koa()
+const favicon = require('koa-favicon');
+server.use(favicon(__dirname + '/public/favicon.ico'));
 
 if (__DEV__) {
   const webpack = require('../webpack.server').default

@@ -15,13 +15,14 @@ const getStyles = assets =>
     }, '')
 
 const getInitialState = state => {
-  const json = JSON.stringify(state).replace('</', '<\\/')
+  const json = JSON.stringify(state) //.replace('</', '<\\/')
   return `window.__INITIAL_STATE__=${ json }`
 }
 
 const Html = (props: Object) => {
   const { markup, state, assets: { styles, javascript, assets }, helmet } = props
-
+  const initialState = getInitialState(state)
+  console.log(initialState)
   return (
     <html>
       <head>
@@ -37,7 +38,7 @@ const Html = (props: Object) => {
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={ { __html: markup } } />
-        <script dangerouslySetInnerHTML={ { __html: getInitialState(state) } } />
+        <script dangerouslySetInnerHTML={ { __html: initialState } } />
         <script src={ javascript.app } />
       </body>
     </html>

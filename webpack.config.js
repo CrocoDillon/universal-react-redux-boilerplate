@@ -60,7 +60,6 @@ if (__DEV__) {
     plugins: [
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin(),
       new webpack.DefinePlugin({
         __DEV__,
         __PROD__,
