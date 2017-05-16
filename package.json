@@ -4,7 +4,8 @@
   "description": "Step by step creation of a Universal React + Redux Boilerplate",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./bin/server",
+    "dev": "node --trace-warnings ./bin/server",
+    "dev-debug": "node --inspect --debug-brk --trace-warnings ./bin/server",
     "start": "cross-env NODE_ENV=production node ./bin/server",
     "build": "npm run build:server && npm run build:client",
     "build:server": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
@@ -40,7 +41,8 @@
     "react-dom": "^15.5.4",
     "react-helmet": "^5.0.3",
     "react-redux": "^5.0.4",
-    "react-router": "^3.0.5",
+    "react-router-config": "^1.0.0-beta.3",
+    "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "webpack-isomorphic-tools": "^3.0.2"

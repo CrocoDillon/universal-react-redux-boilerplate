@@ -1,26 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Router, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
+import DataLoader from './DataLoader'
 import configureStore from './store'
-import configureRoutes from './routes'
 
 const store = configureStore(window.__INITIAL_STATE__)
-const routes = configureRoutes(store)
 
 if (__DEV__) {
   const { AppContainer } = require('react-hot-loader')
-
   ReactDOM.render(
     <AppContainer>
       <Provider store={ store }>
-        <Router routes={ routes } history={ browserHistory } />
+        <BrowserRouter>
+          <DataLoader />
+        </BrowserRouter>
       </Provider>
     </AppContainer>,
     document.getElementById('app')
   )
-
   // Hot reloading on the client
   if (module.hot) {
     module.hot.accept()
@@ -28,7 +27,9 @@ if (__DEV__) {
 } else {
   ReactDOM.render(
     <Provider store={ store }>
-      <Router routes={ routes } history={ browserHistory } />
+      <BrowserRouter>
+        <DataLoader />
+      </BrowserRouter>
     </Provider>,
     document.getElementById('app')
   )
