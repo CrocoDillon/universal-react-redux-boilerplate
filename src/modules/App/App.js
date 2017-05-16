@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react'
-import { element } from 'prop-types'
+import { object } from 'prop-types'
+import { renderRoutes } from 'react-router-config'
 
 import Header from './components/Header'
 
@@ -9,18 +10,18 @@ class App extends Component {
   static displayName = 'App';
 
   static propTypes = {
-    children: element.isRequired
+    route: object.isRequired
   };
 
   render() {
     const styles = require('./App.scss')
 
-    const { children } = this.props
+    const { route } = this.props
 
     return (
       <div className={ styles.container }>
         <Header />
-        { children }
+        { renderRoutes(route.routes) }
       </div>
     )
   }

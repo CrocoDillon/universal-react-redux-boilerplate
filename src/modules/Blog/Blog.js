@@ -1,15 +1,16 @@
 // @flow
 import React from 'react'
-import { string, shape, element, arrayOf } from 'prop-types'
+import { string, shape, object, arrayOf } from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
 
 import { fetchArticles, getArticles } from './redux'
 
 export const Blog = (props: Object) => {
   const styles = require('./Blog.scss')
 
-  const { children, articles } = props
+  const { route, articles } = props
 
   return (
     <div className={ styles.Blog }>
@@ -25,7 +26,7 @@ export const Blog = (props: Object) => {
         </nav>
       </aside>
       <main className={ styles.article }>
-        { children }
+        { renderRoutes(route.routes) }
       </main>
     </div>
   )
@@ -34,7 +35,7 @@ export const Blog = (props: Object) => {
 Blog.displayName = 'Blog'
 
 Blog.propTypes = {
-  children: element.isRequired,
+  route: object.isRequired,
   articles: arrayOf(
     shape({
       slug: string.isRequired,
@@ -43,7 +44,7 @@ Blog.propTypes = {
   ).isRequired
 }
 
-Blog.onEnter = ({ dispatch }) => dispatch(fetchArticles())
+Blog.fetchData = ({ dispatch }) => dispatch(fetchArticles())
 
 const mapStateToProps = state => ({
   articles: getArticles(state)

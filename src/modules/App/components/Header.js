@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
   const styles = require('./Header.scss')
@@ -11,10 +11,10 @@ const Header = () => {
       <nav className={ styles.nav }>
         <ul className={ styles.navList }>
           <li className={ styles.navListItem }>
-            <Link to="/" className={ styles.navLink } activeClassName={ styles.active } onlyActiveOnIndex>Home</Link>
+            <NavLink to="/" className={ styles.navLink } activeClassName={ styles.active } exact>Home</NavLink>
           </li>
           <li className={ styles.navListItem }>
-            <Link to="/blog" className={ styles.navLink } activeClassName={ styles.active }>Blog</Link>
+            <NavLink to="/blog" className={ styles.navLink } activeClassName={ styles.active }>Blog</NavLink>
           </li>
         </ul>
       </nav>

@@ -9,11 +9,12 @@ describe('<Blog />', () => {
 
   function setup(props) {
     props = {
+      route: {},
       articles: [],
       ...props
     }
 
-    const wrapper = shallow(<Blog { ...props }><children /></Blog>)
+    const wrapper = shallow(<Blog { ...props } />)
     const instance = wrapper.instance()
 
     return { wrapper, instance }

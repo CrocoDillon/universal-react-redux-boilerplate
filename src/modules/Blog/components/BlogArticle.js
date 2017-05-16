@@ -49,10 +49,10 @@ BlogArticle.propTypes = {
   loading: bool.isRequired
 }
 
-BlogArticle.onEnter = ({ dispatch }, { params }) => dispatch(fetchArticle(params.slug))
+BlogArticle.fetchData = ({ dispatch }, { params }) => dispatch(fetchArticle(params.slug))
 
-const mapStateToProps = (state, { params }) => ({
-  article: getArticle(state, params.slug),
+const mapStateToProps = (state, { match }) => ({
+  article: getArticle(state, match.params.slug),
   loading: getLoading(state)
 })
 
