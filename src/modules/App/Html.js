@@ -22,7 +22,6 @@ const getInitialState = state => {
 const Html = (props: Object) => {
   const { markup, state, assets: { styles, javascript, assets }, helmet } = props
   const initialState = getInitialState(state)
-  console.log(initialState)
   return (
     <html>
       <head>

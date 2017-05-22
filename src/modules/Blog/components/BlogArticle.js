@@ -9,17 +9,14 @@ import { bindActionCreators } from 'redux';
 
 class BlogArticle extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { fetchArticle, match } = this.props
-    console.log("--- componentWillMount FETCH")
     fetchArticle(match.params.slug)
   }
 
   componentWillReceiveProps(nProps) {
     const { fetchArticle, match, article: {article, loading} } = nProps
     if (!!article && article.slug && !loading && match.params.slug != article.slug) {
-      console.log("--- componentWillReceiveProps FETCH")
-      console.log(nProps)
       fetchArticle(match.params.slug)
    }
   }
@@ -58,7 +55,6 @@ class BlogArticle extends React.Component {
 }
 
 BlogArticle.fetchData = (store, match) => {
-  console.log("--- static fetchData fetchArticleImport FETCH")
   return store.dispatch(fetchArticleImport(match.params.slug))
 }
 

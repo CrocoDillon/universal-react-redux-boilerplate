@@ -17,22 +17,18 @@ const routes = configureRoutes(store)
 const fetchBranchData = (location) => {
   const branch = matchRoutes(routes, location)
   const promises = branch.map(({ route, match }) => {
-    var promise = null
     if(route.fetchData) {
       return route.fetchData(store, match)
     } else {
       return Promise.resolve(null)
     }
   })
-  console.log(promises)
   return Promise.all(promises)
 }
 
 export const render = location => new Promise((resolve, reject) => {
 
   fetchBranchData(location).then(data => {
-    console.log("then fetchBranchData location: " + location)
-    console.log(" data: " + JSON.stringify(data, null, ' '))
     const context = {}
     const markup = ReactDOMServer.renderToString(
       <Provider store={ store }>
@@ -46,7 +42,6 @@ export const render = location => new Promise((resolve, reject) => {
     } else {
       const assets = webpackTools.assets()
       const state = store.getState()
-      console.log("state: " + JSON.stringify(state, null, ' '))
       const helmet = Helmet.rewind()
       const status = rewind()
       const doctype = '<!DOCTYPE html>'

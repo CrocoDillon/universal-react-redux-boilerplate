@@ -11,7 +11,6 @@ class Blog extends React.Component {
 
   // TODO double rendering is happening on server-side first and then redone on client side
   componentDidMount() {
-    console.log("++++ componentDidMount BLOG")
     this.props.fetchArticles()
   }
 
