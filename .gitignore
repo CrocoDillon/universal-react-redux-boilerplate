@@ -5,3 +5,6 @@ node_modules
 webpack-assets.json
 webpack-stats.json
 *.log
+**.tern-port
+**.DS_Store
+**.#**

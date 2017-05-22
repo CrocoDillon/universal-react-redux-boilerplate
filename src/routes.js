@@ -1,53 +1,36 @@
 // @flow
-import React from 'react'
-import { IndexRoute, Route } from 'react-router'
+// TODO NotFount
+import { App, Home, Blog, Header, BlogArticle, NotFound } from './modules'
 
-import { App, Home, Blog, BlogIndex, BlogArticle, NotFound } from './modules'
-
-// On server we want to fetch all data for the current route before rendering
-const fetchData = store => (nextState, replace, callback) => {
-  Promise.all(
-    nextState.routes.map(route => {
-      if (route.component.onEnter) {
-        return route.component.onEnter(store, nextState)
-      }
-    })
-  ).then(() => callback())
-}
-
-// On client all data for the current route is already in the store’s initial
-// state so we only need to attach onEnter hooks for all route components for
-// subsequent routes
-const attachOnEnterHooks = store => ({ routes: [rootRoute] }) => {
-  const attach = route => {
-    if (route.component.onEnter) {
-      route.onEnter = nextState => route.component.onEnter(store, nextState)
+const configureRoutes = (store) => ([
+    { component: App,
+      routes: [
+        {
+          path: '/',
+          component: Header,
+          routes: [
+            {
+              path: '/blog',
+              component: Blog,
+              fetchData: (store, match) => (Blog.fetchData(store, match)),
+              routes: [
+                {
+                  path: '/blog/:slug',
+                  component: BlogArticle,
+                  fetchData: (store, match) => (BlogArticle.fetchData(store, match))
+                }
+              ]
+            }
+          ]
+        },
+        {
+          path: '/',
+          component: Home,
+          exact: true
+        }
+      ]
     }
-
-    if (route.indexRoute) {
-      attach(route.indexRoute)
-    }
-    if (route.childRoutes) {
-      route.childRoutes.forEach(r => attach(r))
-    }
-  }
-
-  attach(rootRoute)
-}
-
-const configureRoutes = (store: Object) => { // eslint-disable-line react/display-name
-  const onEnter = __SERVER__ ? fetchData(store) : attachOnEnterHooks(store)
-
-  return (
-    <Route path="/" component={ App } onEnter={ onEnter }>
-      <IndexRoute component={ Home } />
-      <Route path="blog" component={ Blog }>
-        <IndexRoute component={ BlogIndex } />
-        <Route path=":slug" component={ BlogArticle } />
-      </Route>
-      <Route path="*" component={ NotFound } />
-    </Route>
-  )
-}
+  ]
+)
 
 export default configureRoutes

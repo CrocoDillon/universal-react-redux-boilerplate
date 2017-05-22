@@ -14,20 +14,27 @@ const articles = (state = [], action) => {
   case FETCH_ARTICLES_SUCCESS:
     return action.response
   }
-
   return state
 }
 
-const article = (state = null, action) => {
+const article = (state = {article: {title: null, body: null, slug: null}, loading: false}, action) => {
   switch (action.type) {
-  case FETCH_ARTICLE_REQUEST:
-    return 'loading'
-  case FETCH_ARTICLE_SUCCESS:
-    return action.response
+    case FETCH_ARTICLE_REQUEST:
+      return {
+        article: {...state.article},
+        loading: true
+      }
+    case FETCH_ARTICLE_SUCCESS:
+      return {
+        article: action.response,
+        loading: false
+      }
   case FETCH_ARTICLE_FAILURE:
-    return null
+      return {
+        article: null,
+        loading: false
+      }
   }
-
   return state
 }
 
@@ -46,7 +53,6 @@ const fetchAction = (url, types) => dispatch => {
   dispatch({
     type: REQUEST
   })
-
   return fetch(url)
     .then(
       response => response.json()
@@ -72,15 +78,5 @@ export const fetchArticle = slug => fetchAction(
   `/api/articles/${ slug }`,
   [FETCH_ARTICLE_REQUEST, FETCH_ARTICLE_SUCCESS, FETCH_ARTICLE_FAILURE]
 )
-
-export const getArticles = state => state.blog.articles
-
-export const getArticle = (state, slug) => {
-  const { article } = state.blog // eslint-disable-line no-shadow
-
-  return article && article.slug === slug ? article : null
-}
-
-export const getLoading = state => state.blog.article === 'loading'
 
 export default reducer

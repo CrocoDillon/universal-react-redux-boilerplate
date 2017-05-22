@@ -3,57 +3,76 @@ import React from 'react'
 import { string, shape, bool } from 'prop-types'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
-
 import status from '../../../helpers/status'
-import { fetchArticle, getArticle, getLoading } from '../redux'
+import { fetchArticle as fetchArticleImport } from '../redux'
+import { bindActionCreators } from 'redux';
 
-export const BlogArticle = (props: Object) => {
-  const { article, loading } = props
+class BlogArticle extends React.Component {
 
-  if (!article && loading) {
+  componentDidMount() {
+    const { fetchArticle, match } = this.props
+    fetchArticle(match.params.slug)
+  }
+
+  componentWillReceiveProps(nProps) {
+    const { fetchArticle, match, article: {article, loading} } = nProps
+    if (!!article && article.slug && !loading && match.params.slug != article.slug) {
+      fetchArticle(match.params.slug)
+   }
+  }
+
+  render() {
+    const { article: {article, loading} } = this.props
+
+    if (loading) {
+      return (
+        <article>
+          <Helmet title="Loading..." />
+          <h1>Loading...</h1>
+        </article>
+      )
+    }
+
+    if (!article) {
+      status(404)
+
+      return (
+        <article>
+          <Helmet title="Not Found" />
+          <h1>Not Found</h1>
+        </article>
+      )
+    }
+
     return (
       <article>
-        <Helmet title="Loading..." />
-        <h1>Loading...</h1>
+        <Helmet title={ article.title } />
+        <h1>{ article.title }</h1>
+        <div>{ article.body }</div>
       </article>
     )
   }
+}
 
-  if (!article) {
-    status(404)
-
-    return (
-      <article>
-        <Helmet title="Not Found" />
-        <h1>Not Found</h1>
-      </article>
-    )
-  }
-
-  return (
-    <article>
-      <Helmet title={ article.title } />
-      <h1>{ article.title }</h1>
-      <div>{ article.body }</div>
-    </article>
-  )
+BlogArticle.fetchData = (store, match) => {
+  return store.dispatch(fetchArticleImport(match.params.slug))
 }
 
 BlogArticle.displayName = 'BlogArticle'
 
 BlogArticle.propTypes = {
   article: shape({
-    title: string.isRequired,
-    body: string.isRequired
-  }),
-  loading: bool.isRequired
+    article: shape({
+      title: string.isRequired,
+      slug: string.isRequired,
+      body: string.isRequired
+    }),
+    loading: bool.isRequired
+  })
 }
 
-BlogArticle.onEnter = ({ dispatch }, { params }) => dispatch(fetchArticle(params.slug))
-
-const mapStateToProps = (state, { params }) => ({
-  article: getArticle(state, params.slug),
-  loading: getLoading(state)
+const mapStateToProps = (state, { match }) => ({
+  article: state.blog.article
 })
 
-export default connect(mapStateToProps)(BlogArticle)
+export default connect(mapStateToProps, (dispatch) => bindActionCreators({fetchArticle: fetchArticleImport}, dispatch))(BlogArticle)
