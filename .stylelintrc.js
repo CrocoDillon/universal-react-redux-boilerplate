@@ -268,6 +268,8 @@ module.exports = {
     'selector-id-pattern': null,
     // limit the number of compound selectors in a selector
     'selector-max-compound-selectors': 3,
+    // limit the number of id selectors in a selector
+    'selector-max-id': 0,
     // limit the specificity of selectors
     'selector-max-specificity': null,
     // specify a pattern for the selectors of rules nested within rules
@@ -276,8 +278,6 @@ module.exports = {
     'selector-no-attribute': null,
     // disallow combinators in selectors
     'selector-no-combinator': null,
-    // disallow id selectors
-    'selector-no-id': true,
     // disallow qualifying a selector by type
     'selector-no-qualifying-type': true,
     // disallow type selectors

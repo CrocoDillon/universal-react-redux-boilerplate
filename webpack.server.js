@@ -27,7 +27,7 @@ const devMiddleware = webpackDevMiddleware(compiler, {
 })
 
 export default app => {
-  app.use(async(ctx, next) => {
+  app.use(async (ctx, next) => {
     /* eslint prefer-const: 0 */
     let hasNext = await applyExpressMiddleware(devMiddleware, ctx.req, {
       end(content) {
@@ -41,7 +41,7 @@ export default app => {
     if (hasNext) { await next() }
   })
 
-  app.use(async(ctx, next) => {
+  app.use(async (ctx, next) => {
     /* eslint prefer-const: 0 */
     let hasNext = await applyExpressMiddleware(webpackHotMiddleware(compiler), ctx.req, ctx.res)
 
