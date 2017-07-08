@@ -51,7 +51,7 @@ if (__DEV__) {
           loaders: [
             'style-loader',
             'css-loader?modules&localIdentName=[local]__[hash:base64:4]&importLoaders=1&sourceMap',
-            'postcss-loader',
+            'postcss-loader?sourceMap',
             'sass-loader?sourceMap'
           ]
         }
@@ -103,7 +103,7 @@ if (__PROD__) {
             fallback: 'style-loader',
             use: [
               'css-loader?modules&localIdentName=[hash:base64:4]&importLoaders=1&sourceMap',
-              'postcss-loader',
+              'postcss-loader?sourceMap',
               'sass-loader?sourceMap'
             ]
           })
